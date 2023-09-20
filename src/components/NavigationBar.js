@@ -5,7 +5,7 @@ function NavigationBar() {
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/settings">Settings</Link>
+      <Link to="/device/1">Device 1 Details</Link>
     </nav>
   );
 }
