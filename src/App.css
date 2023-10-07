@@ -1,38 +1,50 @@
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start; /* Updated to flex-start to align content to the top */
+  font-size: calc(8px + 1vmin); /* Reduced base font size */
   color: white;
+  background: rgb(68, 78, 78);
+  position: relative;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+/* Add animated pseudo-elements for dynamic background */
+.App::before,
+.App::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Style and animate pseudo-elements */
+.App::before {
+  background: linear-gradient(45deg, rgb(68, 78, 78), rgb(68, 78, 78));
+  clip-path: circle(30% at right 70%);
+  animation: animate 5s linear infinite;
+}
+
+.App::after {
+  background: linear-gradient(45deg, rgb(68, 78, 78), rgb(68, 78, 78));
+  clip-path: circle(30% at 10% 90%);
+  animation: animate 10s linear infinite;
+}
+
+/* Keyframes for animation */
+@keyframes animate {
+  0% {
+    transform: translateY(0);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translateY(-100vh);
   }
 }
