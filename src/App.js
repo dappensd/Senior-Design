@@ -10,7 +10,7 @@ import LoginPage from './components/LoginPage';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
 import './App.css';
-import RegistrationPage from './components/RegistrationPage'; // Already imported
+import RegistrationPage from './components/RegistrationPage'; 
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="/device/:id" element={<DeviceDetails />} />
           <Route path="/settings" element={<SettingsPanel />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} /> {/* Added route for RegistrationPage */}
+          <Route path="/register" element={<RegistrationPage />} />
         </Routes>
         <Footer />
       </div>
