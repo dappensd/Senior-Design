@@ -1,0 +1,43 @@
+/* RegistrationPage.css */
+
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Center elements horizontally */
+    justify-content: flex-start; /* Align elements to the top */
+    height: 100vh; /* Full height of the viewport */
+    background-color: red;
+}
+
+.registration-form {
+    display: grid;
+    gap: 11px;
+    width: 221px; /* Adjust the width of the form as needed */
+    justify-items: center;
+    align-items: center;
+}
+
+.registration-form input {
+    margin-bottom: 33px; /* Space between input fields */
+    padding: 20px; /* Padding inside input fields */
+    font-size: 16px; /* Font size of input text */
+}
+
+.registration-form button {
+    padding: 10px; /* Padding inside the button */
+    font-size: 18px; /* Font size of button text */
+    cursor: pointer; /* Cursor style when hovering over the button */
+}
+
+.registration-form label {
+    margin-bottom: -5px; /* Space between label and input field */
+    font-size: 18px; /* Font size of label text */
+}
+
+.registration-link {
+    margin-top: 10px; /* Space above the registration link */
+    font-size: 16px; /* Font size of registration link text */
+}
+
+
+
