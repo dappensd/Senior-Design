@@ -1,26 +1,31 @@
 
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/HomePage';
-import DeviceList from './components/DeviceList';
-import DeviceDetails from './components/DeviceDetails';
+import DeviceDetails from './components/DeviceDetails/DeviceDetails';
 import SettingsPanel from './components/SettingsPanel';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
 import './App.css';
-import RegistrationPage from './components/RegistrationPage'; 
+import RegistrationPage from './components/RegistrationPage/RegistrationPage';
+import BlueCurveSection from './components/BlueCurveSection';
+
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar />
+        <div className="wave">  </div>
+      <BlueCurveSection />      
+      <NavigationBar />
+      
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/compatibility" element={<CompatibilityPage />} />
-          <Route path="/devices" element={<DeviceList />} />
+          <Route path="/devices" element={<DeviceDetails />} />
           <Route path="/device/:id" element={<DeviceDetails />} />
           <Route path="/settings" element={<SettingsPanel />} />
           <Route path="/login" element={<LoginPage />} />
@@ -31,5 +36,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;

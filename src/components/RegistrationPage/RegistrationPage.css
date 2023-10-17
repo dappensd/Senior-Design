@@ -1,0 +1,65 @@
+/* RegistrationPage.css */
+
+.registration-container {
+    max-width: 400px;
+    margin: 50px auto;  /* Adjusted margin for top, right, bottom, left */
+    padding: 40px;
+    text-align: center;  /* Align content to the center */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.registration-container h2 {
+    color: #000; /* Sets the color of the header to black */
+}
+
+.registration-container p {
+    color: #000; /* Sets the color of the paragraph to black */
+}
+  
+.registration-form {
+    width: 100%;  /* Form takes the full width of its parent */
+    display: flex;
+    flex-direction: column; /* Stack the elements vertically */
+    align-items: stretch;  /* New line: ensure items are stretched to fill the space */
+    padding: 0;  /* Removed padding here to avoid inner content displacement */
+    margin-bottom: 25px;
+}
+
+.registration-form input {
+    width: calc(100% - 20px);  /* Adjusting width considering padding */
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box;  /* Include padding and border in total width/height */
+}
+
+.registration-form button {
+    padding: 10px; 
+    background-color: #218838; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    box-sizing: border-box;  /* Include padding and border in total width/height */
+}
+
+.registration-form button:hover {
+    background-color: #1a7a32; 
+}
+
+.registration-form label {
+    margin-bottom: 5px; 
+    color: #000; /* Changed to black for visibility against the white background */
+    text-align: left;  /* Aligns the text within labels to the left */
+}
+
+.registration-link {
+    margin-top: 10px; 
+    color: #61dafb; 
+}
+
+
+
