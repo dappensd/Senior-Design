@@ -1,12 +1,14 @@
 import React from 'react';
 import './DeviceDetails.css';
+import { Link } from 'react-router-dom';
 
 class DeviceDetails extends React.Component {
   constructor(props) {
     super(props);
     // Initialize the state with an empty list of devices
     this.state = {
-      devices: []
+      devices: [],
+      isLoggedIn: true, 
     };
   }
 
@@ -32,7 +34,50 @@ class DeviceDetails extends React.Component {
     event.target.reset();
   }
 
+   // New method to handle logging in
+   handleLogin = (credentials) => {
+    // Logic to authenticate users goes here
+    // This usually involves sending a request to your backend service
+   
+  
+    // Simulating an API call to your authentication service
+    const fakeAPICall = new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+
+    fakeAPICall.then((isAuthenticated) => {
+      if (isAuthenticated) {
+        // If the user is authenticated, update the state
+        this.setState({ isLoggedIn: true });
+      } else {
+        // Handle login failure (e.g., display an error message)
+      }
+    });
+  }
+
+  // New method to handle signing up
+  handleSignup = (userInfo) => {
+    // Logic to register a new user goes here
+    // Similar to the login method, this would involve communicating with your backend service
+
+    // After successful registration, you might automatically log in the user
+    // or redirect them to the login screen to log in with their new credentials
+  }
+
+
+
   render() {
+    // If the user is not logged in, we show the login/signup prompt
+    if (!this.state.isLoggedIn) {
+      return (
+        <div>
+        <p>You must be logged in to register a device.</p>
+        {/* Provide links to the Login and Registration pages */}
+        <Link to="/login">Log In</Link> {/* Update "/login" to your actual login route */}
+        <br />
+        <Link to="/register">Sign Up</Link> {/* Update "/register" to your actual registration route */}
+      </div>
+    );
+  }
+     // If the user is logged in, we render the device registration form
     return (
       <div className="device-details-container">
         <h2>Register a New Device</h2>
@@ -40,27 +85,27 @@ class DeviceDetails extends React.Component {
         <form onSubmit={this.handleRegisterDevice}>
         <div>
           <label htmlFor="deviceId">Device ID:</label>
-          <input type="text" id="deviceId" name="deviceId" required />
+          <input type="text" id="deviceId" name="deviceId" required className="form-input"  />
         </div>
 
         <div>
           <label htmlFor="deviceConnectionString">Device Connection String:</label>
-          <input type="text" id="deviceConnectionString" name="deviceConnectionString" required />
+          <input type="text" id="deviceConnectionString" name="deviceConnectionString" required className="form-input" />
         </div>
 
         <div>
           <label htmlFor="deviceType">Device Type/Model:</label>
-          <input type="text" id="deviceType" name="deviceType" required />
+          <input type="text" id="deviceType" name="deviceType" required className="form-input" />
         </div>
 
         <div>
           <label htmlFor="firmwareVersion">Device Firmware Version:</label>
-          <input type="text" id="firmwareVersion" name="firmwareVersion" required />
+          <input type="text" id="firmwareVersion" name="firmwareVersion" required className="form-input" />
         </div>
 
         <div>
           <label htmlFor="ipAddress">IP Address:</label>
-          <input type="text" id="ipAddress" name="ipAddress" required />
+          <input type="text" id="ipAddress" name="ipAddress" required className="form-input" />
         </div>
 
         <div>

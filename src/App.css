@@ -39,25 +39,6 @@ code {
     monospace;
 }
 
-.login-container {
-  margin-top: 81px;  /* Adjusted margin to reduce space */
-}
-
-.login-label {
-  display: block;
-  margin: 10px 0 5px;  /* Adjusted margin to reduce space between label and input */
-}
-
-.login-input {
-  padding: 5px;
-  margin-bottom: 25px;  /* Adjusted margin to create space between inputs */
-}
-
-.login-submit {
-  padding: 15px 11px;
-  cursor: pointer;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;

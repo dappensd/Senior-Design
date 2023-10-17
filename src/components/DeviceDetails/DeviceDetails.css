@@ -18,13 +18,14 @@
 
 /* Style all input fields */
 .device-details-container input[type="text"] {
-    width: calc(100% - 22px);
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #cccccc; /* Make sure the border is visible */
     border-radius: 5px;
     background-color: #ffffff; /* Explicitly setting background to white */
     color: #000000; /* Ensuring the text color is black (or another dark color) */
+    box-sizing: border-box;
 }
 
 /* Style the labels */
@@ -91,5 +92,10 @@
     background-color: #f1f3f4; /* Light hover background for interactivity */
 }
  
-  
+/* Add styling for the new .form-input class */
+.form-input {
+    width: 100%; /* This ensures the input takes up all available width within its parent container. */
+    box-sizing: border-box; /* This includes padding and border in the element's total width/height. */
+    /* other styles like padding, border, etc. */
+  } 
   
