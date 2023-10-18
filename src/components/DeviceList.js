@@ -1,26 +1,13 @@
-// DeviceList.js
-import React from 'react';
 
-const mockDevices = [
-  { id: 1, name: 'Device 1', status: 'Online' },
-  { id: 2, name: 'Device 2', status: 'Offline' },
-  // ... add more mock devices
-];
+import React from 'react';
 
 function DeviceList() {
   return (
     <div>
-      <h2>Devices</h2>
-      <ul>
-        {mockDevices.map(device => (
-          <li key={device.id}>
-            {device.name} - {device.status}
-          </li>
-        ))}
-      </ul>
+      <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Devices</h1>
+      <p>This is the Devices Page.</p>
     </div>
   );
 }
 
 export default DeviceList;
-
