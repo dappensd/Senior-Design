@@ -40,7 +40,7 @@ class DeviceDetails extends React.Component {
     // This usually involves sending a request to your backend service
    
   
-    // Simulating an API call to your authentication service
+    // Simulating an API call (This is a placeholder until we get Backend functioning)
     const fakeAPICall = new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 
     fakeAPICall.then((isAuthenticated) => {
@@ -53,19 +53,15 @@ class DeviceDetails extends React.Component {
     });
   }
 
-  // New method to handle signing up
+  // New method to handle signing up (Work in progress)
   handleSignup = (userInfo) => {
-    // Logic to register a new user goes here
-    // Similar to the login method, this would involve communicating with your backend service
 
-    // After successful registration, you might automatically log in the user
-    // or redirect them to the login screen to log in with their new credentials
   }
 
 
 
   render() {
-    // If the user is not logged in, we show the login/signup prompt
+    // If the user is not logged in, we show the login/signup prompt (Needs Backend to function properly)
     if (!this.state.isLoggedIn) {
       return (
         <div>
@@ -77,7 +73,7 @@ class DeviceDetails extends React.Component {
       </div>
     );
   }
-     // If the user is logged in, we render the device registration form
+     // If the user is logged in, we render the device registration form (Needs backend to function properly)
     return (
       <div className="device-details-container">
         <h2>Register a New Device</h2>
@@ -113,7 +109,7 @@ class DeviceDetails extends React.Component {
         </div>
         </form>
 
-        {/* New section: Table displaying registered devices */}
+        {/* Table displaying registered devices */}
         <div className="registered-devices-container">
           <h3>Registered Devices</h3>
           <table>

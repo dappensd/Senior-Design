@@ -1,5 +1,5 @@
 import React from 'react';
-import '.././App.css'; // Make sure to import the CSS
+import '.././App.css'; 
 
 const BlueCurveSection = () => {
     return (

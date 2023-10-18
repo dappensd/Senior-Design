@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './LoginPage.css';  // Importing the styles from App.css
+import './LoginPage.css';  
 import { Link } from 'react-router-dom';
 
 
