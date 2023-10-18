@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar/NavigationBar';
-import HomePage from './components/HomePage';
+import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
 import SettingsPanel from './components/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
