@@ -6,9 +6,8 @@ import './NavigationBar.css';
 function NavigationBar() {
   return (
     <nav className="navbar">
-      <h1 className="navbar-title">Stay Aware</h1>
+      <h1 className="navbar-title"><Link to = "/" className="nav-link">Stay Aware</Link></h1>
       <div className="navbar-links">
-        <Link to="/" className="nav-link">Home</Link>
         <Link to="/compatibility" className="nav-link">Compatibility</Link>
         <Link to="/devices" className="nav-link">Devices</Link>
         <Link to="/settings" className="nav-link">Settings</Link>
