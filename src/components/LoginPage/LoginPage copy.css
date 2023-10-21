@@ -1,10 +1,27 @@
 .login-container {
-    margin-top: 81px;  /* Adjusted margin to reduce space */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;  /* This margin-top might be influencing the vertical positioning */
   }
   
+.login-container h2 {
+    color: #000; /* Sets the color of the header to black */
+}
+
+.login-container p {
+    color: #000; /* Sets the color of the paragraph to black */
+
+}  
   .login-label {
     display: block;
     margin: 10px 0 5px;  /* Adjusted margin to reduce space between label and input */
+    color: #000000;
+    
   }
   
   .login-input {
