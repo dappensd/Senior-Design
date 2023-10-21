@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## For New React Modules
+
+Installing new modules adds them to the package.json file. If you pull from a branch that is using new modules, you can run:
+### `npm install`
+
+This will install the new modules locally to your node_modules folder.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
