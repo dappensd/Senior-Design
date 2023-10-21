@@ -22,8 +22,8 @@
     width: 100%;  /* Form takes the full width of its parent */
     display: flex;
     flex-direction: column; /* Stack the elements vertically */
-    align-items: stretch;  /* New line: ensure items are stretched to fill the space */
-    padding: 0;  /* Removed padding here to avoid inner content displacement */
+    align-items: stretch; 
+    padding: 0;  
     margin-bottom: 25px;
 }
 
@@ -33,7 +33,7 @@
     margin-bottom: 15px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
-    box-sizing: border-box;  /* Include padding and border in total width/height */
+    box-sizing: border-box; 
 }
 
 .registration-form button {
@@ -43,7 +43,7 @@
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
-    box-sizing: border-box;  /* Include padding and border in total width/height */
+    box-sizing: border-box; 
 }
 
 .registration-form button:hover {

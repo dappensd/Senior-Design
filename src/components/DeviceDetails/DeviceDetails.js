@@ -30,17 +30,16 @@ class DeviceDetails extends React.Component {
       devices: [...prevState.devices, newDevice]
     }));
 
-    // Optional: Clear the form fields after submission
+   
     event.target.reset();
   }
 
    // New method to handle logging in
    handleLogin = (credentials) => {
-    // Logic to authenticate users goes here
-    // This usually involves sending a request to your backend service
+
    
   
-    // Simulating an API call to your authentication service
+    // Simulating an API call
     const fakeAPICall = new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 
     fakeAPICall.then((isAuthenticated) => {
@@ -55,11 +54,7 @@ class DeviceDetails extends React.Component {
 
   // New method to handle signing up
   handleSignup = (userInfo) => {
-    // Logic to register a new user goes here
-    // Similar to the login method, this would involve communicating with your backend service
 
-    // After successful registration, you might automatically log in the user
-    // or redirect them to the login screen to log in with their new credentials
   }
 
 
@@ -73,7 +68,7 @@ class DeviceDetails extends React.Component {
         {/* Provide links to the Login and Registration pages */}
         <Link to="/login">Log In</Link> {/* Update "/login" to your actual login route */}
         <br />
-        <Link to="/register">Sign Up</Link> {/* Update "/register" to your actual registration route */}
+        <Link to="/register">Sign Up</Link>
       </div>
     );
   }

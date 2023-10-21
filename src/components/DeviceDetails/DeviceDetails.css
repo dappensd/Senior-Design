@@ -1,18 +1,18 @@
 /* DeviceDetails.css */
 .device-details-container {
-    background-color: #ffffff; /* Adjust based on the exact color from the design */
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 50px;
     text-align: left;
-    max-width: 500px; /* Adjust based on your design preference */
+    max-width: 500px; 
     margin: auto;
     margin-top: 50px;
 }
 
 .device-details-container h2 {
-    color: #333333; /* Adjust based on the exact color from the design */
-    font-size: 24px; /* Adjust based on your design preference */
+    color: #333333;
+    font-size: 24px; 
     margin-bottom: 40px;
 }
 
@@ -39,7 +39,7 @@
 .device-details-container input[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #0044cc; /* Example primary color, adjust accordingly */
+    background-color: #0044cc;
     color: white;
     border: none;
     border-radius: 5px;
@@ -51,7 +51,7 @@
     background-color: #0033aa; /* A shade darker for the hover state */
 }
 
- /* Existing styles... */
+
 
 /* New styles for the table and its elements */
 .registered-devices-container {
@@ -92,7 +92,7 @@
     background-color: #f1f3f4; /* Light hover background for interactivity */
 }
  
-/* Add styling for the new .form-input class */
+
 .form-input {
     width: 100%; /* This ensures the input takes up all available width within its parent container. */
     box-sizing: border-box; /* This includes padding and border in the element's total width/height. */
