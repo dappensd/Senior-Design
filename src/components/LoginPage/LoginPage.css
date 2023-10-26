@@ -33,3 +33,7 @@
     padding: 15px 11px;
     cursor: pointer;
   }
+
+  .h2 {
+  text-align: center;       /* Moves the Login title to the middle of the form. */
+} 

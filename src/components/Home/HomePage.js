@@ -61,6 +61,12 @@ function HomePage() {
               <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% face challenges securing IoT & connected devices</a>
             </div>
         </div>
+        <div className="card">
+          <img src="Images/article4.jpg" alt="" className="center" />
+            <div className="article-link">
+              <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
+            </div>
+        </div>
       </Slider> 
       <br></br>
 

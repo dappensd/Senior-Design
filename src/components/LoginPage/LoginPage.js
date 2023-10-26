@@ -25,6 +25,7 @@ function LoginPage() {
       <input type="password" id="password" name="password" value={password} onChange={handlePasswordChange} className="login-input" />
       <input type="submit" value="Submit" className="login-submit" />
       <p>Don't have an account? <Link to="/register">Register Here!</Link></p>
+      <p> Forgot password? <b>Recover Here!</b> </p>
     </div>
   );
 }
