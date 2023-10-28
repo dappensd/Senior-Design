@@ -38,5 +38,6 @@ p {
 a, a:link a:visited {
   color: black;
   font-weight: bold;
+  text-decoration: none;
 }
 

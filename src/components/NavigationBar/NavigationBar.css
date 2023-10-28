@@ -27,6 +27,7 @@
 
 .nav-link {
   color: #fff;
+  text-decoration: none;
 }
 
 .navbar-spacer {
@@ -36,5 +37,6 @@
 .nav-link-right {
   color: #fff;
   margin-right: 20px;
+  text-decoration: none;
 }
 

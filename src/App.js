@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="wave">  </div>
+        <div className="wave"></div>
       <BlueCurveSection />      
       <NavigationBar />
       
