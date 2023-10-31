@@ -1,54 +1,67 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
 const session = require('express-session');
 const passport = require('passport');
-require('./utils/passport-setup');
+const deviceRoutes = require('./routes/devices');
+const clientId = process.env.AZUREAD_CLIENT_ID;
+const clientSecret = process.env.AZUREAD_CLIENT_SECRET;
+const callbackUrl = process.env.AZUREAD_CALLBACK_URL;
+const tenantId = process.env.AZUREAD_TENANT_ID;
+const userRoutes = require('./userauthentication/users');
+const { jwtMiddleware } = require('./middlewares.js')
 
-
-
-app.use(session({ secret: 'your_session_secret', resave: false, saveUninitialized: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-const PORT = process.env.PORT || 3001;
-const deviceRoutes = require('./routes/devices'); 
+const app = express();
 
 // Middleware to parse the body of the request
 app.use(express.json());
 
-// Route to handle the Azure AD OAuth response
-app.get('/auth/azure/callback', (req, res) => {
-    // Logic to handle the authorization code sent by Azure AD
-    // This involves sending a request to Azure AD to exchange the code for tokens (id_token, access_token)
-    
-    // For example:
-    // const code = req.query.code;
-    // ... send a request to Azure AD with the code
-    
-    // Then, depending on the app logic, redirect the user or show a response
-    res.redirect('/');  // Redirect to home page, or wherever appropriate
-  });
+app.use(session({ 
+  secret: process.env.SESSION_SECRET, 
+  resave: false, 
+  saveUninitialized: false 
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./utils/passport-setup');
+require('crypto').randomBytes(64).toString('hex');
 
 // Routes
 app.use(deviceRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Hello World! This is the response from the backend server.');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.use('/', userRoutes);
 
 // Route to start the OAuth process
 app.get('/auth/azure',
     passport.authenticate('azuread-openidconnect', { scope: ['openid', 'profile', 'User.Read'] }),
     (req, res) => {
-        // The request will be redirected to Azure AD for authentication, so this function will not be called.
+        // This function won't be called as the request is redirected
     });
 
 // Route to handle the Azure AD OAuth response
-app.get('/auth/azure/callback', passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/');
+app.get('/auth/azure/callback', 
+    passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), 
+    (req, res) => {
+        if (req.user) {
+            res.redirect('/dashboard');
+        } else {
+            res.redirect('/login?loginError=true');
+        }
+    });
+
+// Secure endpoint example
+app.get('/someSecureEndpoint', jwtMiddleware, (req, res) => {
+    // If the middleware didn't throw an error, this route is authenticated
+    res.send('This is a secure endpoint!');
 });
+
+app.get('/', (req, res) => {
+  res.send('Hello World! This is the response from the backend server.');
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
