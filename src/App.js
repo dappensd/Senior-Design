@@ -8,6 +8,7 @@ import SettingsPanel from './components/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
+import About from './components/About/About';
 import './App.css';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import BlueCurveSection from './components/BlueCurveSection';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/settings" element={<SettingsPanel />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </div>
