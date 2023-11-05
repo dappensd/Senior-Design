@@ -81,7 +81,7 @@ router.post('/register', [
       }
   });
 
-router.post('/login', async (req, res) => {
+  router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -116,7 +116,15 @@ router.post('/login', async (req, res) => {
             { expiresIn: '1h' },
             (err, token) => {
                 if (err) throw err;
-                res.json({ token });
+                // Set the HTTP-only cookie with the JWT token
+                res.cookie('sessionToken', token, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === 'production', // Set secure to true if in production
+                    sameSite: 'strict', // Helps against CSRF
+                    maxAge: 3600000 // 1 hour cookie
+                });
+                // Send a simple success message
+                res.status(200).json({ msg: 'Login successful' });
             }
         );
 
@@ -125,6 +133,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ msg: 'Server error' });
     }
 });
+
 
 
 // Password reset request endpoint
