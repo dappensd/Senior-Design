@@ -1,4 +1,15 @@
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
+
+
+
+
+// Configure CORS middleware
+const corsMiddleware = cors({
+    origin: 'http://localhost:3000', // Replace with the URL of your frontend application
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true // This allows session cookies to be sent back and forth
+});
 
 // JWT Authentication Middleware
 const jwtMiddleware = (req, res, next) => {
@@ -18,5 +29,6 @@ const jwtMiddleware = (req, res, next) => {
 };
 
 module.exports = {
-    jwtMiddleware: jwtMiddleware
+    corsMiddleware,  // Exports the CORS Middleware
+    jwtMiddleware
 };

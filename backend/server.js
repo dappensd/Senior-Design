@@ -1,35 +1,39 @@
+// Core and third-party modules
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const deviceRoutes = require('./routes/devices');
-const clientId = process.env.AZUREAD_CLIENT_ID;
-const clientSecret = process.env.AZUREAD_CLIENT_SECRET;
-const callbackUrl = process.env.AZUREAD_CALLBACK_URL;
-const tenantId = process.env.AZUREAD_TENANT_ID;
-const userRoutes = require('./userauthentication/users');
-const { jwtMiddleware } = require('./middlewares.js')
 
+
+// Routers
+const deviceRoutes = require('./routes/devices');
+const userRoutes = require('./userauthentication/users');
+const authRoutes = require('./routes/authroutes'); 
+
+// Middleware configurations
+const { corsMiddleware, jwtMiddleware } = require('./middlewares');
+
+// Utilities
+require('./utils/passport-setup');
+
+// Initialization of the app
 const app = express();
 
-// Middleware to parse the body of the request
+// Use middlewares
+app.use(corsMiddleware);
 app.use(express.json());
-
 app.use(session({ 
-  secret: process.env.SESSION_SECRET, 
-  resave: false, 
-  saveUninitialized: false 
-}));
-
+    secret: process.env.SESSION_SECRET, 
+    resave: false, 
+    saveUninitialized: false 
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./utils/passport-setup');
-require('crypto').randomBytes(64).toString('hex');
-
-// Routes
-app.use(deviceRoutes);
-app.use('/', userRoutes);
+// Use routes
+app.use('/devices', deviceRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes); 
 
 // Route to start the OAuth process
 app.get('/auth/azure',
