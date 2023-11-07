@@ -77,7 +77,7 @@ function HomePage() {
     </div>
     <div class = "description">
     <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
-      <p> If you decide not to register an account, You will still have access to our updated newsletters on the latest
+      <p> If you decide not to register an account, you will still have access to our updated newsletters on the latest
           threats to IoT security! <br/ >
           Just click on any of the article links provided. </p>
     </div>
