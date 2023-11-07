@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+
+const app = express();
 
 
 let devices = [];
@@ -48,6 +51,16 @@ router.delete('/devices/:id', (req, res) => {
     } else {
         res.status(404).send('Device not found');
     }
+ app.get('/auth/azure', passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), (req, res) => res.redirect('/'));
+
+ app.post('/auth/azure/callback', passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), (req, res) => {
+        // successful authentication
+        res.redirect('/');
+    });
+    
+
+
+
 });
 
 module.exports = router;
