@@ -120,9 +120,13 @@ const LoginPage = () => {
           mb: 4,
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ color: 'text.primary' }}>
+      <Typography 
+        component="h1" 
+        variant="h5" 
+        sx={{ color: 'text.primary' }}
+      >
           Sign in
-        </Typography>
+      </Typography>
         {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>} {/* Error message displayed here */}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
           <TextField
@@ -163,12 +167,17 @@ const LoginPage = () => {
             variant="contained"
             sx={{ mt: 2, mb: 2, backgroundColor: '#2F2F2F' }}
             onClick={handleMicrosoftSignIn}
-          >
+            >
             Sign in with Microsoft
-          </Button>
-          <Link href="/register" variant="body2">
-            {"Don't have an account? Sign Up"}
-          </Link>
+            </Button>
+          
+            <Typography component="p" variant="body2" sx={{ color: 'text.primary', mt: 1, display: 'block', textAlign: 'center' }}>
+            {"Don't have an account? "}
+            <Link href="/register" variant="body2" sx={{ textDecoration: 'none', color: 'blue !important' }}>
+              Sign Up
+            </Link>
+          </Typography>
+          
         </Box>
       </Box>
     </Container>

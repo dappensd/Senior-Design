@@ -119,11 +119,11 @@ const RegistrationPage = () => {
             mt: 1  // Optional: adds some spacing above the text
           }}
         >
-          <Typography component="p" variant="body2" sx={{ color: 'text.primary', mt: 1 }}>
-          Already have an account?&nbsp;
-          <Link href="/login" variant="body2">
-            Sign In
-          </Link>
+            <Typography component="p" variant="body2" sx={{ color: 'text.primary', mt: 1, display: 'block', textAlign: 'center' }}>
+            {"Already have an account? "}
+            <Link href="/login" variant="body2" sx={{ textDecoration: 'none', color: 'blue !important' }}>
+              Login Here
+            </Link>
           </Typography>
           </Box>
         </Box>
