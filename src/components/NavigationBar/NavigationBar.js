@@ -10,6 +10,7 @@ function NavigationBar() {
       <div className="navbar-links">
         <Link to="/compatibility" className="nav-link">Compatibility</Link>
         <Link to="/devices" className="nav-link">Devices</Link>
+        <Link to="/about" className="nav-link">About</Link>
         <Link to="/settings" className="nav-link">Settings</Link>
       </div>
       <div className="navbar-spacer"></div> 

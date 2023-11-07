@@ -1,0 +1,23 @@
+h2 {
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+dd {
+margin: 0;
+padding:  0 0 0.5em 0;
+}
+
+.link {
+    text-decoration: none;  
+    color: inherit;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
