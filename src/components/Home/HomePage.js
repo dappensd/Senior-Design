@@ -69,13 +69,13 @@ function HomePage() {
           </div>
         </Slider>
       </div>
-    <div class = "description">
+    <div className = "description">
       <h2> Register, Manage, and Help Protect Your Devices All In One Place </h2>
         <p> Stay Aware is an all-in-one solution for learning how to protect your IoT devices from cyberthreats. <br/ >
             New threats emerge every day and as more IoTs find their way into businesses and homes, Stay Aware will help owners keep their devices protected. <br />
             To create an account to register your IoT device, click here! </p>
     </div>
-    <div class = "description">
+    <div className = "description">
     <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
       <p> If you decide not to register an account, you will still have access to our updated newsletters on the latest
           threats to IoT security! <br/ >

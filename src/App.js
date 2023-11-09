@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './auth-context';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
@@ -12,15 +13,18 @@ import About from './components/About/About';
 import './App.css';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import BlueCurveSection from './components/BlueCurveSection';
+import ParticlesBackground from './components/ParticlesBackground';
 
 
 function App() {
-  return (
+ return (
     <BrowserRouter>
+     <AuthProvider>
       <div className="App">
         <div className="wave"></div>
       <BlueCurveSection />      
       <NavigationBar />
+      <ParticlesBackground />
       
 
         <Routes>
@@ -35,7 +39,8 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </BrowserRouter>
+     </AuthProvider>
+    </BrowserRouter>  
   );
 }
 
