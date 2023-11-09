@@ -4,7 +4,7 @@ import './CompatibilityPage.css';
 
 function CompatibilityPage() {
   return (
-    <div>
+    <div class="compatibility">
       <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Compatibility</h1>
       <h2> Stay Aware Compatibile Devices: </h2>
         <dl>

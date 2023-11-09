@@ -76,8 +76,15 @@ function HomePage() {
             To create an account to register your IoT device, click here! </p>
     </div>
     <div className = "description">
+      <h2> Download Security Scripts Right to Your Device! </h2>
+        <p> Users are given the opportunity to download scripts from credible resources to patch security issues as they arise. There is a description of what the script does and shows the user how to download it. <br />
+            All users that have registered an account and connected a device will have the opportunity to download the script. <br />
+           <b>Note:</b> Users <b>MUST</b> choose to download the scripts their registered IoT device. Stay Aware does <b>NOT</b> automatically install scripts without the users' consent.</p>
+    </div>
+    
+    <div className = "description">
     <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
-      <p> If you decide not to register an account, you will still have access to our updated newsletters on the latest
+      <p> If you decide not to register an account, you can still our updated newsletters on the latest
           threats to IoT security! <br/ >
           Just click on any of the article links provided. </p>
     </div>
