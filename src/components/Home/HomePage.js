@@ -72,19 +72,19 @@ function HomePage() {
     <div className = "description">
       <h2> Register, Manage, and Help Protect Your Devices All In One Place </h2>
         <p> Stay Aware is an all-in-one solution for learning how to protect your IoT devices from cyberthreats. <br/ >
-            New threats emerge every day and as more IoTs find their way into businesses and homes, Stay Aware will help owners keep their devices protected. <br />
-            To create an account to register your IoT device, click here! </p>
+            New threats emerge every day and as more IoTs find their way into businesses and homes, Stay Aware will help owners keep their devices protected.</p>
+            <p style = {{textAlign:'center'}}>To create an account to register your IoT device, click here! </p>
     </div>
     <div className = "description">
       <h2> Download Security Scripts Right to Your Device! </h2>
         <p> Users are given the opportunity to download scripts from credible resources to patch security issues as they arise. There is a description of what the script does and shows the user how to download it. <br />
-            All users that have registered an account and connected a device will have the opportunity to download the script. <br />
+            All registered users with a connected device will be eligible to download the script. <br /><br />
            <b>Note:</b> Users <b>MUST</b> choose to download the scripts their registered IoT device. Stay Aware does <b>NOT</b> automatically install scripts without the users' consent.</p>
     </div>
     
     <div className = "description">
     <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
-      <p> If you decide not to register an account, you can still our updated newsletters on the latest
+      <p style = {{textAlign: 'center'}}> If you decide not to register an account, you can still our updated newsletters on the latest
           threats to IoT security! <br/ >
           Just click on any of the article links provided. </p>
     </div>

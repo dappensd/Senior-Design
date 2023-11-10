@@ -48,3 +48,6 @@ a, a:link a:visited {
   border-radius: 20px;
 }
 
+.description a:visited {
+    color:black;
+}
