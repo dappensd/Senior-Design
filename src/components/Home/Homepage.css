@@ -36,18 +36,18 @@ p {
 
 
 a, a:link a:visited {
-  color: black;
+  color: white;
   font-weight: bold;
   text-decoration: none;
 }
 
 .description {
   border: 2px solid #333;
+  color:white;
+  background-color:#a9a9a9;
   padding: 20px;
   margin: 20px;
   border-radius: 20px;
 }
 
-.description a:visited {
-    color:black;
-}
+

@@ -23,50 +23,57 @@ function HomePage() {
         <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Welcome to Our Website</h1>
       </div>
       <div className = "description">
-        <h2> Read Credible Articles for More Information on IoT Devices and the Risks They Present: </h2>
+        <h2> Credible Articles for Device Protection: </h2>
         <Slider {...settings}>
           <div className="card">
-            <img src="Images/article1.jpg" alt="" className="center" />
+            <img src="Images/article1.jpg" alt="" className="center" /> <br /><br />
               <div className="article-link">
                 <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT protection can be a costly mistake</a>
               </div>
           </div>
           <div className="card">
-            <img src="Images/article2.jpg" alt="" className="center" />
+            <img src="Images/article2.jpg" alt="" className="center" /> <br /><br />
               <div className="article-link">
                 <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and connected devices is a global challenge</a>
               </div>
           </div>
           <div className="card">
-            <img src="Images/article3.jpg" alt="" className="center" />
+            <img src="Images/article3.jpg" alt="" className="center" /> <br /><br />
               <div className="article-link">
                 <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% face challenges securing IoT & connected devices</a>
               </div>
           </div>
           <div className="card">
-            <img src="Images/article1.jpg" alt="" className="center" />
+            <img src="Images/article1.jpg" alt="" className="center" /> <br /><br />
               <div className="article-link">
                 <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT protection can be a costly mistake</a>
               </div>
           </div>
           <div className="card">
-            <img src="Images/article2.jpg" alt="" className="center" />
+            <img src="Images/article2.jpg" alt="" className="center" /> <br /><br />
               <div className="article-link">
                 <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and connected devices is a global challenge</a>
               </div>
          </div>
           <div className="card">
-            <img src="Images/article3.jpg" alt="" className="center" />
+            <img src="Images/article3.jpg" alt="" className="center" /> <br /> <br />
               <div className="article-link">
                 <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% face challenges securing IoT & connected devices</a>
               </div>
           </div>
+            <div className="card">
+            <img src="Images/article5.jpg" alt="" className="center" /> <br /><br />
+              <div className="article-link">
+                <a href="https://venturebeat.com/security/why-attackers-love-to-target-iot-devices/" target="_blank" rel="noreferrer"> Attacker Love to Target IoT Devices</a>
+              </div>
+          </div>
           <div className="card">
-            <img src="Images/article4.jpg" alt="" className="center" />
+            <img src="Images/article4.jpg" alt="" className="center" /> <br /> <br />
               <div className="article-link">
                 <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
               </div>
           </div>
+
         </Slider>
       </div>
     <div className = "description">
