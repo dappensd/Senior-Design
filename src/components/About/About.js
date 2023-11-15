@@ -4,7 +4,7 @@ import styles from './About.module.css';
 function About() {
     return (
         <body className={styles.layout}>
-            <h1 className={styles.heading}>About the Website</h1>
+            <h1>About the Website</h1>
             <img className={styles.banner} src="Images/iotbanner.png" alt="IoT banner" />
             <div className={styles.column}> 
                 <div className={styles.left}>
@@ -37,20 +37,29 @@ function About() {
                     </p>
                 </div>
             </div>
-            <div>
-                <h2 style={{fontSize: '1.75em', textAlign: 'left'}}>Contact Us</h2>
-                    <div style={{textAlign: 'left'}}>
+            <br></br>
+            <h2 style={{fontSize: '1.75em', textAlign: 'center'}}>Contact Us</h2>
+            <div className={styles.column}>
+                <div className={styles.c1}>
                     <h3>Ryan Carman</h3>
                     <a className={styles.linkColor} href="mailto: carmanrn@mail.uc.edu">carmanrn@mail.uc.edu</a>
+                </div>
+                <div className={styles.c2}>
                     <h3>Sam Dappen</h3>
                     <a className={styles.linkColor} href="mailto: dappensd@mail.uc.edu">dappensd@mail.uc.edu</a>
+                </div>
+                <div className={styles.c3}>
                     <h3>Braeden Huth</h3>
                     <a className={styles.linkColor} href="mailto: huthbn@mail.uc.edu">huthbn@mail.uc.edu</a>
+                </div>
+                <div className={styles.c4}>
                     <h3>Hayes Kennedy</h3>
                     <a className={styles.linkColor} href="mailto: kenne2jh@mail.uc.edu">kenne2jh@mail.uc.edu</a>
+                </div>
+                <div className={styles.c5}>
                     <h3>Nathan Phillips</h3>
                     <a className={styles.linkColor} href="mailto: phillin4@mail.uc.edu">phillin4@mail.uc.edu</a>
-                    </div>
+                </div>
             </div>
           
             
