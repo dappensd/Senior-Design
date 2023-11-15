@@ -1,3 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
 h2 {
-    text-align:center;
+    text-align: left;
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 75%;
+}
+
+.right {
+    flex: 25%;
+    background-color: lightgray;
+    padding-left: 20px;
+}
+
+a {
+    color: blue;
 }
