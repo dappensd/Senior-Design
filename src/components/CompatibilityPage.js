@@ -4,9 +4,8 @@ import './CompatibilityPage.css';
 
 function CompatibilityPage() {
   return (
-    <div>
-      <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Compatibility</h1>
-      <h2> Stay Aware Compatibile Devices: </h2>
+    <div class="compatibility">
+      <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Compatible Devices:</h1>
         <dl>
           <dt> LIFX Candle Color Wi-Fi Smart LED Multicolors Light Bulb </dt>
             <dd>- Smart lightbulb that can be controlled from the cloud on iOS, Android, and PC! </dd>

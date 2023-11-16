@@ -1,0 +1,58 @@
+.layout {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding-top: 80px;
+        padding-bottom: 20px;
+        text-align: center; 
+    }
+}
+
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.left {
+    flex: 33%;
+}
+
+.middle {
+    flex: 33%;
+}
+.right {
+    flex: 33%;
+}
+
+
+.banner {
+    width: 82%;
+}
+
+.linkColor {
+    color: blue;
+}
+
+.c1 {
+    flex: 20%;
+}
+
+.c2 {
+    flex: 20%;
+}
+
+.c3 {
+    flex: 20%;
+}
+
+.c4 {
+    flex: 20%;
+}
+
+.c5 {
+    flex: 20%;
+}
