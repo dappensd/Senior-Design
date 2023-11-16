@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './SettingsPanel.css';
+import './ThemeSettings.css';
 
 function SettingsPanel() {
   return (

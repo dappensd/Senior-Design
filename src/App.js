@@ -14,6 +14,7 @@ import './App.css';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import BlueCurveSection from './components/BlueCurveSection';
 import ParticlesBackground from './components/ParticlesBackground';
+import ThemeSettings from './components/ThemeSettings';
 
 
 function App() {
