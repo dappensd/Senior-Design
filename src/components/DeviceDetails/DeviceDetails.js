@@ -1,5 +1,5 @@
 import React from 'react';
-import './DeviceDetails.css';
+import styles from './DeviceDetails.module.css';
 import { Link } from 'react-router-dom';
 
 class DeviceDetails extends React.Component {
@@ -73,43 +73,41 @@ class DeviceDetails extends React.Component {
     );
   }
      // If the user is logged in, we render the device registration form
-    return (
-      <div className="device-details-container">
+     return (
+      <div className={styles['device-details-container']}>
         <h2>Register a New Device</h2>
-        {/* Updated form with onSubmit handler */}
         <form onSubmit={this.handleRegisterDevice}>
-        <div>
-          <label htmlFor="deviceId">Device ID:</label>
-          <input type="text" id="deviceId" name="deviceId" required className="form-input"  />
-        </div>
+          <div>
+            <label htmlFor="deviceId">Device ID:</label>
+            <input type="text" id="deviceId" name="deviceId" required className={styles['form-input']} />
+          </div>
 
-        <div>
-          <label htmlFor="deviceConnectionString">Device Connection String:</label>
-          <input type="text" id="deviceConnectionString" name="deviceConnectionString" required className="form-input" />
-        </div>
+          <div>
+            <label htmlFor="deviceConnectionString">Device Connection String:</label>
+            <input type="text" id="deviceConnectionString" name="deviceConnectionString" required className={styles['form-input']} />
+          </div>
 
-        <div>
-          <label htmlFor="deviceType">Device Type/Model:</label>
-          <input type="text" id="deviceType" name="deviceType" required className="form-input" />
-        </div>
+          <div>
+            <label htmlFor="deviceType">Device Type/Model:</label>
+            <input type="text" id="deviceType" name="deviceType" required className={styles['form-input']} />
+          </div>
 
-        <div>
-          <label htmlFor="firmwareVersion">Device Firmware Version:</label>
-          <input type="text" id="firmwareVersion" name="firmwareVersion" required className="form-input" />
-        </div>
+          <div>
+            <label htmlFor="firmwareVersion">Device Firmware Version:</label>
+            <input type="text" id="firmwareVersion" name="firmwareVersion" required className={styles['form-input']} />
+          </div>
 
-        <div>
-          <label htmlFor="ipAddress">IP Address:</label>
-          <input type="text" id="ipAddress" name="ipAddress" required className="form-input" />
-        </div>
+          <div>
+            <label htmlFor="ipAddress">IP Address:</label>
+            <input type="text" id="ipAddress" name="ipAddress" required className={styles['form-input']} />
+          </div>
 
-        <div>
-          <input type="submit" value="Register Device" />
-        </div>
+          <div>
+            <input type="submit" value="Register Device" />
+          </div>
         </form>
 
-        {/* New section: Table displaying registered devices */}
-        <div className="registered-devices-container">
+        <div className={styles['registered-devices-container']}>
           <h3>Registered Devices</h3>
           <table>
             <thead>
@@ -122,7 +120,6 @@ class DeviceDetails extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {/* Rows are dynamically created based on the devices in the state */}
               {this.state.devices.map((device, index) => (
                 <tr key={index}>
                   <td>{device.deviceId}</td>

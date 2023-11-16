@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './ThemeSettings.css';
+import styles from './ThemeSettings.module.css'; // When you apply styles in this file it will become declared and the warning will go away
 
 function ThemeSettings() {
   return (
