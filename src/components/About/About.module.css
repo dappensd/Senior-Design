@@ -1,14 +1,11 @@
-.layout {
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    h1 {
-        font-size: 2.5em;
-        font-weight: bold;
-        padding-top: 80px;
-        padding-bottom: 20px;
-        text-align: center; 
-    }
+.layout h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 100px; /* Add this property */
+    padding-bottom: 20px;
+    text-align: center; 
 }
+
 
 
 .column {
