@@ -43,8 +43,8 @@ a, a:link a:visited {
 
 .description {
   border: 2px solid #333;
-  color:white;
-  background-color:#a9a9a9;
+  color:black;
+  background-color: white;
   padding: 20px;
   margin: 20px;
   border-radius: 20px;
