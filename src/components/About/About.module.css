@@ -1,11 +1,12 @@
-.layout h1 {
+.layout {
+h1 {
     font-size: 2.5em;
     font-weight: bold;
     margin-top: 100px; 
     padding-bottom: 20px;
     text-align: center; 
 }
-
+}
 
 
 .column {
