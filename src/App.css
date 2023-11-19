@@ -3,6 +3,7 @@
   text-align: center;
   /* Removed background image because it's defined again in .layer1 */
   height: 100vh;
+  font-family: 'Inter', sans-serif;
 }
 
 html {
