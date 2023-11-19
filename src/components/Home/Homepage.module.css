@@ -36,7 +36,7 @@ p {
 
 
 a, a:link a:visited {
-  color: white;
+  color: black;
   font-weight: bold;
   text-decoration: none;
 }
@@ -50,4 +50,6 @@ a, a:link a:visited {
   border-radius: 20px;
 }
 
-
+a:link {
+color: black;
+}
