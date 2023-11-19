@@ -37,62 +37,78 @@ async function sendPasswordResetEmail(email, resetLink) {
 
 // Registration endpoint
 router.post('/register', [
-    // Validation middleware (assuming you have this set up)
+    // Validation middleware
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password must be 6 or more characters').isLength({ min: 6 })
   ], async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
+          console.log('Validation errors:', errors.array()); // Log validation errors
           return res.status(400).json({ errors: errors.array() });
       }
   
-      const { email, password } = req.body;
+      const { username, email, password } = req.body;
+
+      console.log('Attempting to register user:', { username, email }); // Log registration attempt
   
       try {
-          // Check if user already exists
-          const { resources: existingUsers } = await container.items.query({
+          // Check if user already exists by email
+          const { resources: existingUsersByEmail } = await container.items.query({
               query: "SELECT * from c WHERE c.email = @email",
               parameters: [{ name: "@email", value: email }]
           }).fetchAll();
-  
-          if (existingUsers.length > 0) {
-              return res.status(400).json({ msg: 'User already exists' });
+
+          if (existingUsersByEmail.length > 0) {
+              console.log('Email already in use:', email); // Log if email is already in use
+              return res.status(400).json({ msg: 'User already exists with this email' });
+          }
+
+          // Check if username already exists
+          const { resources: existingUsersByUsername } = await container.items.query({
+              query: "SELECT * from c WHERE c.username = @username",
+              parameters: [{ name: "@username", value: username }]
+          }).fetchAll();
+
+          if (existingUsersByUsername.length > 0) {
+              console.log('Username already in use:', username); // Log if username is already in use
+              return res.status(400).json({ msg: 'Username already in use' });
           }
   
           // Hash the password
           const salt = await bcrypt.genSalt(10);
           const hashedPassword = await bcrypt.hash(password, salt);
   
-          // Save user to the database with additional fields for password reset
+          // Save user to the database
           const newUser = {
+              username,
               email,
               password: hashedPassword,
               resetPasswordToken: null,
               resetPasswordExpires: null
-           
           };
           const { resource: createdUser } = await container.items.create(newUser);
+          console.log('User registered:', createdUser.id); // Log successful registration
   
           res.status(201).json(createdUser);
   
       } catch (error) {
-          console.error(error);
+          console.error('Registration error:', error); // Log server error
           res.status(500).json({ msg: 'Server error' });
       }
   });
 
   router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     try {
         // Check if user exists
         const { resources: users } = await container.items.query({
-            query: "SELECT * from users u WHERE u.email = @email",
-            parameters: [{ name: "@email", value: email }]
+            query: "SELECT * from users u WHERE u.username = @username",
+            parameters: [{ name: "@username", value: username }]
         }).fetchAll();
 
         if (users.length === 0) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.status(400).json({ msg: 'User not found with this username' });
         }
 
         const user = users[0];
@@ -100,7 +116,7 @@ router.post('/register', [
         // Compare passwords
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.status(400).json({ msg: 'Password is incorrect' });
         }
 
         // User verified. Generate JWT.

@@ -6,7 +6,7 @@ import { generateCodeVerifier, generateCodeChallenge } from './pkce';
 
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState(''); // State to hold error messages
   const auth = useContext(AuthContext);
   console.log("Auth context: ", auth);
@@ -25,12 +25,17 @@ const LoginPage = () => {
     e.preventDefault();
     setError(''); // Clear any existing errors
     try {
+      const payload = { 
+        username: credentials.username,
+        password: credentials.password,
+      };
+
       const response = await fetch('http://localhost:3001/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify(payload),
       });
   
       if (!response.ok) {
@@ -176,8 +181,7 @@ const LoginPage = () => {
             <Link href="/register" variant="body2" sx={{ textDecoration: 'none', color: 'blue !important' }}>
               Sign Up
             </Link>
-          </Typography>
-          
+          </Typography>  
         </Box>
       </Box>
     </Container>

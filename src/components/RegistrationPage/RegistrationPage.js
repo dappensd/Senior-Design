@@ -18,14 +18,23 @@ const RegistrationPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       
+      const payload = {
+        username: credentials.username,
+        email: credentials.email,
+        password: credentials.password,
+      };
+      
+      console.log('Submitting registration with credentials:', payload);
+
       const response = await fetch('http://localhost:3001/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify(payload),
       });
   
       if (!response.ok) {
