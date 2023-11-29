@@ -99,27 +99,34 @@ router.post('/register', [
 
   router.post('/login', async (req, res) => {
     const { username, password } = req.body;
+    console.log('Login request received for username:', username);
 
     try {
         // Check if user exists
+        console.log('Checking if user exists');
         const { resources: users } = await container.items.query({
             query: "SELECT * from users u WHERE u.username = @username",
             parameters: [{ name: "@username", value: username }]
         }).fetchAll();
 
         if (users.length === 0) {
+            // Logging the result of the user check
+            console.log('No user found with this username');
             return res.status(400).json({ msg: 'User not found with this username' });
         }
 
         const user = users[0];
 
         // Compare passwords
+        console.log('Compare passwords');
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
+            console.log('Password mismatch');
             return res.status(400).json({ msg: 'Password is incorrect' });
         }
 
         // User verified. Generate JWT.
+        console.log('Generating JWT for user');
         const payload = {
             user: {
                 id: user.id,
@@ -131,21 +138,31 @@ router.post('/register', [
             process.env.JWT_SECRET,
             { expiresIn: '1h' },
             (err, token) => {
-                if (err) throw err;
+                if (err) {
+                    console.error('Error generating JWT:', err);
+                    throw err;
+                }   
+                 // Log successful token generation
+                 console.log('JWT generated successfully');
+
                 // Set the HTTP-only cookie with the JWT token
                 res.cookie('sessionToken', token, {
                     httpOnly: true,
-                    secure: process.env.NODE_ENV === 'production', // Set secure to true if in production
+                    secure: process.env.NODE_ENV === 'production',
                     sameSite: 'strict', // Helps against CSRF
                     maxAge: 3600000 // 1 hour cookie
                 });
+
+                 // Log successful login
+                 console.log('User logged in successfully');
+
                 // Send a simple success message
                 res.status(200).json({ msg: 'Login successful' });
             }
         );
 
     } catch (error) {
-        console.error(error);
+        console.error('Login error:', error);
         res.status(500).json({ msg: 'Server error' });
     }
 });

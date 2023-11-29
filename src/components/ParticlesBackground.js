@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim';
-import particlesConfig from '.././particlesConfig'; // Adjust the path as needed
+import particlesConfig from '.././particlesConfig'; 
 
 const ParticlesBackground = () => {
   const options = useMemo(() => {
     return {
-      ...particlesConfig, // Use your existing configuration
+      ...particlesConfig, 
       fullScreen: {
         enable: true,
         zIndex: -1 // Set the z-index to -1

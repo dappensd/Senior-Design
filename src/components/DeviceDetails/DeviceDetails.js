@@ -66,7 +66,7 @@ class DeviceDetails extends React.Component {
         <div>
         <p>You must be logged in to register a device.</p>
         {/* Provide links to the Login and Registration pages */}
-        <Link to="/login">Log In</Link> {/* Update "/login" to your actual login route */}
+        <Link to="/login">Log In</Link> {/* points to login page */}
         <br />
         <Link to="/register">Sign Up</Link>
       </div>

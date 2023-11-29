@@ -24,6 +24,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); // Clear any existing errors
+    console.log('Attempting login with:', credentials);
     try {
       const payload = { 
         username: credentials.username,

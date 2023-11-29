@@ -96,6 +96,5 @@
 .form-input {
     width: 100%; /* This ensures the input takes up all available width within its parent container. */
     box-sizing: border-box; /* This includes padding and border in the element's total width/height. */
-    /* other styles like padding, border, etc. */
   } 
   

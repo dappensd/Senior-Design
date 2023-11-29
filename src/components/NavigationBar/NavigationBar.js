@@ -5,6 +5,7 @@ import styles from './NavigationBar.module.css'; // Import styles using CSS Modu
 
 function NavigationBar() {
   const { isLoggedIn, logout } = useAuth(); // Use the auth context
+  console.log('NavigationBar isLoggedIn:', isLoggedIn);
 
   return (
     <nav className={styles.navbar}>

@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 // Configure CORS middleware
 const corsMiddleware = cors({
-    origin: 'http://localhost:3000', // Replace with the URL of your frontend application
+    origin: 'http://localhost:3000', // Frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // This allows session cookies to be sent back and forth
 });

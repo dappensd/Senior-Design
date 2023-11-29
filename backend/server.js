@@ -53,11 +53,6 @@ app.get('/auth/azure/callback',
         }
     });
 
-// Secure endpoint example
-app.get('/someSecureEndpoint', jwtMiddleware, (req, res) => {
-    // If the middleware didn't throw an error, this route is authenticated
-    res.send('This is a secure endpoint!');
-});
 
 app.get('/', (req, res) => {
   res.send('Hello World! This is the response from the backend server.');

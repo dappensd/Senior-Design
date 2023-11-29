@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* This makes sure your form is centered in the viewport */
+  height: 100vh; /* This makes sure the form is centered in the viewport */
 }
 
 .login-form {
   width: 100%;
-  max-width: 400px; /* Or the width that suits your design */
+  max-width: 400px; 
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: for a light shadow effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   background-color: #040404; /* White background for the form */
 }
 
@@ -37,7 +37,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px; /* Consistent with the input fields */
-  background-color: #5cb85c; /* A shade of green, or your choice */
+  background-color: #5cb85c; /* A shade of green for the login button */
   color: white;
   cursor: pointer;
   font-size: 18px;
@@ -54,7 +54,7 @@
 }
 
 .links a {
-  color: #333; /* Dark grey color for the links, or your choice */
+  color: #333; /* Dark grey color for the links */
   text-decoration: none;
 }
 
