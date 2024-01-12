@@ -74,7 +74,7 @@ function HomePage() {
       <div className={styles.description}>
         <h2> Register, Manage, and Help Protect Your Devices All In One Place </h2>
         <p> Stay Aware is an all-in-one solution for learning how to protect your IoT devices from cyberthreats. New threats emerge every day and as more IoTs find their way into businesses and homes, Stay Aware will help owners keep their devices protected.</p>
-        <p style={{textAlign:'center'}}>To create an account to register your IoT device, click here! </p>
+        <p style={{textAlign:'center'}}>To create an account to register your IoT device, click <a href = "http://localhost:3000/register" target="_blank" rel="noreferrer" style={{ color: 'black' }}> here!</a> </p>
       </div>
       <div className={styles.description}>
         <h2> Download Security Scripts Right to Your Device! </h2>
