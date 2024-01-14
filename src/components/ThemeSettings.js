@@ -4,10 +4,8 @@ import styles from './ThemeSettings.module.css'; // When you apply styles in thi
 
 function ThemeSettings() {
   return (
-    <div>
-        <h1> Themes </h1>
-        <h2> Dark Mode </h2>
-        <h2> Light Mode </h2>
+    <div className={styles.header}>
+      Themes
     </div>
   );
 }
