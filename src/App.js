@@ -5,7 +5,7 @@ import { AuthProvider } from './auth-context';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
-import SettingsPanel from './components/SettingsPanel';
+import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
@@ -14,7 +14,7 @@ import './App.css';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import BlueCurveSection from './components/BlueCurveSection';
 import ParticlesBackground from './components/ParticlesBackground';
-import ThemeSettings from './components/ThemeSettings';
+import ThemeSettings from './components/Settings/ThemeSettings';
 
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/theme-settings" element={<ThemeSettings />} />
         </Routes>
         <Footer />
       </div>
