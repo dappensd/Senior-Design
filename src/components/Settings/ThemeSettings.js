@@ -9,6 +9,7 @@ function ThemeSettings() {
           <h1> Themes </h1> {/* This is where we will implement the Light/Dark Mode option */}
         </div>
         <div className={styles.content}>
+           This is where you change the theme of the website.
           <h2> Light </h2>
           <h2> Dark </h2>
         </div>
