@@ -50,6 +50,11 @@
     border-radius: 20px;
   }
   
-  a:link {
+.articleLink a:link {
   color: black;
-  }
+}
+
+.articleLink a:visited {
+color: black;
+
+}

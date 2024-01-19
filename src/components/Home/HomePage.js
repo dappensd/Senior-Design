@@ -10,7 +10,7 @@ function HomePage() {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3
+    slidesToScroll: 3,
   };
 
   return (
@@ -67,6 +67,12 @@ function HomePage() {
             <img src="Images/article4.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
               <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <img src="Images/article6.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://www.byos.io/blog/iot-device-security" target="_blank" rel="noreferrer"> Four IoT Device Security Best Practices for Every Organization</a>
             </div>
           </div>
         </Slider>
