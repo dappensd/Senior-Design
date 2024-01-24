@@ -7,6 +7,7 @@ import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
+import Documentation from './components/Documentation/documentation';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
 import About from './components/About/About';
@@ -38,6 +39,7 @@ function App() {
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/theme-settings" element={<ThemeSettings />} />
+          <Route path="/documentation" element={<Documentation />} />
         </Routes>
         <Footer />
       </div>
