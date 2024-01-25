@@ -25,7 +25,7 @@ function CompatibilityPage() {
             </div>
 
             <div>
-              <dt> <a href= 'https://devicecatalog.azure.com/featured'> Azure Compatibility Catelogue </a></dt>
+              <dt> <a href= 'https://devicecatalog.azure.com/featured' target="_blank" rel="noopener noreferrer"> Azure Compatibility Catelogue </a></dt>
                 <dd>- For more devices compatible with Azure services </dd>
             </div>
 
