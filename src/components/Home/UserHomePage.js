@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Homepage.module.css'; // Import styles from HomePage.module.css
+import styles from './UserHomePage.module.css'; 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -35,7 +35,8 @@ function HomePage() {
       <div className={styles.description}>
         <h2> Credible Articles for Device Protection: </h2>
         <Slider {...settings}>
-      {/*  <div className={styles.card}>
+          
+          <div className={styles.card}>
             <img src="Images/article1.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
               <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT protection can be a costly mistake</a>
@@ -56,36 +57,6 @@ function HomePage() {
             </div>
           </div>
 
-      */}
-           
-           <div className={styles.card}>
-            <img src="Images/article4.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
-            </div>
-          </div>
-
-          <div className={styles.card}>
-            <img src="Images/article1.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT Protection Can Be a Costly Mistake</a>
-            </div>
-          </div>
-
-          <div className={styles.card}>
-            <img src="Images/article2.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and Connected Devices is a Global Challenge</a>
-            </div>
-          </div>
-
-          <div className={styles.card}>
-            <img src="Images/article3.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% Face Challenges Securing IoT & Connected Devices</a>
-            </div>
-          </div>
-
           <div className={styles.card}>
             <img src="Images/article5.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
@@ -94,16 +65,9 @@ function HomePage() {
           </div>
 
           <div className={styles.card}>
-            <img src="Images/article8.jpg" alt="" className={styles.center} />
+            <img src="Images/article4.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
-              <a href="https://www.theverge.com/2021/3/9/22322122/verkada-hack-150000-security-cameras-tesla-factory-cloudflare-jails-hospitals" target="_blank" rel="noreferrer"> Verkada Hack Exposes 150,000 Security Cameras</a>
-            </div>
-          </div>
-
-          <div className={styles.card}>
-            <img src="Images/article9.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://robots.net/tech/what-is-iot-hub/" target="_blank" rel="noreferrer"> What is an IoT Hub?</a>
+              <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
             </div>
           </div>
 
@@ -120,10 +84,23 @@ function HomePage() {
               <a href="https://www.ul.com/insights/us-cyber-trust-mark" target="_blank" rel="noreferrer"> The US Cyber Trust Mark </a>
             </div>
           </div>
+
+          <div className={styles.card}>
+            <img src="Images/article8.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://www.theverge.com/2021/3/9/22322122/verkada-hack-150000-security-cameras-tesla-factory-cloudflare-jails-hospitals" target="_blank" rel="noreferrer"> Verkada Hack Exposes 150,000 Security Cameras</a>
+            </div>
+          </div>
+
+          <div className={styles.card}>
+            <img src="Images/article9.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://robots.net/tech/what-is-iot-hub/" target="_blank" rel="noreferrer"> What is an IoT Hub?</a>
+            </div>
+          </div>
           
         </Slider>
       </div>
-      
       <div className={styles.description}>
         <h2> Register, Manage, and Help Protect Your Devices All In One Place </h2>
         <p> Stay Aware is an all-in-one solution for learning how to protect your IoT devices from cyberthreats. New threats emerge every day and as more IoTs find their way into businesses and homes, Stay Aware will help owners keep their devices protected.</p>
