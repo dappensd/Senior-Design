@@ -10,7 +10,7 @@ function SettingsPanel() {
       <div> 
         <nav>
            <div className={styles.themes}>
-              <Link to="/ThemeSettings">Themes</Link>
+              <Link to="/theme-settings">Themes</Link>
           </div>
         </nav>
       </div>

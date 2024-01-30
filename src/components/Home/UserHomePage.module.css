@@ -2,9 +2,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 95%;
-    height: 200px;
-    object-fit: cover;
+    width: 94%;
   }
   
   /*
@@ -25,7 +23,7 @@
   }
   
   h2 {
-    text-align: center;
+    text-align: left;
     padding-left: 5%;
     padding-right: 5%; 
   }

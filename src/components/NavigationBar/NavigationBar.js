@@ -14,7 +14,9 @@ function NavigationBar() {
         <Link to="/compatibility" className={styles['nav-link']}>Compatibility</Link>
         <Link to="/devices" className={styles['nav-link']}>Devices</Link>
         <Link to="/about" className={styles['nav-link']}>About</Link>
+        <Link to="/documentation" className={styles['nav-link']}>Documentation</Link>
         <Link to="/settings" className={styles['nav-link']}>Settings</Link>
+        
       </div>
       <div className={styles['navbar-spacer']}></div>
       {isLoggedIn ? (

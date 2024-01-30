@@ -1,27 +1,31 @@
-h2 {
-    text-align: center;
-}
+.content {
 
-dt {
-    font-weight: bold;
-    text-decoration: underline;
-}
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 80px;
+        text-align: center;
+    }
 
-dd {
-margin: 0;
-padding:  0 0 0.5em 0;
-}
+    dt {
+        font-weight: bold;
+        text-decoration: underline;
+        padding:  0 0 0.5em 0;
+    }
 
-.link {
-    text-decoration: none;  
-    color: inherit;
-}
+    dd {
+        margin-Bottom: 0.75em;
+        padding:  0 0 0.5em 0;
+        }
 
-a:visited {
-    text-decoration: none;
-    color: white;
-}
+    .link {
+        text-decoration: none;  
+        color: inherit;
+    }
 
-.compatibility a:visited {
-    color:black;
+    .compatibility a:visited {
+        text-decoration: none;
+        color:black;
+    }
+
 }
