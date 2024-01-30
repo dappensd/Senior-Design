@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
-const app = express();
-
+const { sendMessageToDevice } = require('./IoTHubService'); // Corrected import
 
 let devices = [];
 
@@ -24,7 +22,6 @@ router.get('/devices/:id', (req, res) => {
 
 // Create a new device
 router.post('/devices', (req, res) => {
-   
     const newDevice = req.body; // body needs to have the structure of the device
     devices.push(newDevice);
     res.status(201).send('Device created');
@@ -51,16 +48,19 @@ router.delete('/devices/:id', (req, res) => {
     } else {
         res.status(404).send('Device not found');
     }
- app.get('/auth/azure', passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), (req, res) => res.redirect('/'));
+});
 
- app.post('/auth/azure/callback', passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }), (req, res) => {
-        // successful authentication
-        res.redirect('/');
-    });
-    
-
-
-
+router.post('/devices/:id/send-command', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+        const { command } = req.body; 
+        const deviceId = req.params.id;
+        await sendMessageToDevice(deviceId, command); // Use the destructured function
+        res.status(200).send(`Command sent to device ${deviceId}`);
+    } catch (error) {
+        console.error('Error sending command to device:', error);
+        res.status(500).send('Failed to send command to device');
+    }
 });
 
 module.exports = router;
+
