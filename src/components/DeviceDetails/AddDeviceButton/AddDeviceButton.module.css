@@ -1,0 +1,22 @@
+
+.addButton {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 30px; /* This can remain if you still want the margin at the bottom */
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .buttonWrapper {
+    display: flex;
+    justify-content: flex-end; /* Aligns button to the right */
+    padding-bottom: 10px; /* Adds padding at the bottom */
+  }
+
+  .addButton:hover {
+    background-color: #218838;
+  }
+  

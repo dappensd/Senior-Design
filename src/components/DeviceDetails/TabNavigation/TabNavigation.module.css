@@ -1,0 +1,23 @@
+/* TabNavigation.module.css */
+
+.tabContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px; /* Space from the top element, adjust as needed */
+    padding-left: 20px; /* Padding from the left side of the container */
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    margin-right: 5px; /* Space between tabs */
+    outline: none; /* Removes the outline to improve aesthetics on click */
+  }
+  
+  .activeTab {
+    border-bottom: 2px solid #007bff; /* Active tab indicator */
+    background-color: white;
+  }
+  

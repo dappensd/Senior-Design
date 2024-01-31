@@ -1,100 +1,87 @@
-/* DeviceDetails.css */
-.device-details-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 50px;
-    text-align: left;
-    max-width: 500px; 
-    margin: auto;
-    margin-top: 50px;
-}
+/* DeviceDetails.module.css */
 
-.device-details-container h2 {
-    color: #333333;
-    font-size: 24px; 
-    margin-bottom: 40px;
-}
-
-/* Style all input fields */
-.device-details-container input[type="text"] {
-    width: 100%;
-    padding: 10px;
+.deviceDetails {
+    padding-top: 70px;
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 20px;
-    border: 1px solid #cccccc; /* Make sure the border is visible */
-    border-radius: 5px;
-    background-color: #ffffff; /* Explicitly setting background to white */
-    color: #000000; /* Ensuring the text color is black (or another dark color) */
-    box-sizing: border-box;
-}
-
-/* Style the labels */
-.device-details-container label {
-    display: block;
-    margin-bottom: 10px;
-    color: #555555; /* A shade darker for better readability */
-}
-
-/* Style the submit button */
-.device-details-container input[type="submit"] {
+  }
+  
+  .searchFilterSection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .searchBar {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .filterSortControls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .selectControl {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+  
+  .devicesTable {
     width: 100%;
-    padding: 12px;
-    background-color: #0044cc;
+    border-collapse: collapse;
+  }
+  
+  .devicesTable th,
+  .devicesTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .devicesTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .deviceRow {
+    transition: background-color 0.3s ease;
+  }
+  
+  .deviceRow:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .actionButton {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .addButton {
+    padding: 10px 20px;
+    background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 18px; /* Larger font size */
-}
-
-.device-details-container input[type="submit"]:hover {
-    background-color: #0033aa; /* A shade darker for the hover state */
-}
-
-
-
-/* New styles for the table and its elements */
-.registered-devices-container {
-    margin-top: 40px; /* Additional spacing before the table */
-}
-
-.registered-devices-container h3 {
+    float: right;
     margin-bottom: 20px;
-    color: #333333;
-    font-size: 22px;
-}
+  }
+  
+  .addButton:hover {
+    background-color: #218838;
+  }
+  
 
-.registered-devices-container table {
-    width: 100%;
-    border-collapse: collapse; /* Ensures there are no double borders */
-    margin-top: 10px;
-}
-
-.registered-devices-container table, 
-.registered-devices-container th, 
-.registered-devices-container td {
-    border: 1px solid #dddddd; /* Light grey border */
-    text-align: left;
-    padding: 12px;
-}
-
-.registered-devices-container th {
-    background-color: #f4f4f4; /* Light grey background for the header row */
-    color: #333333; /* Dark text for better readability */
-}
-
-.registered-devices-container tr:nth-child(even) {
-    background-color: #fafafa; /* Zebra striping for the table rows */
-}
-
-/* Hover style for rows */
-.registered-devices-container tr:hover {
-    background-color: #f1f3f4; /* Light hover background for interactivity */
-}
- 
-
-.form-input {
-    width: 100%; /* This ensures the input takes up all available width within its parent container. */
-    box-sizing: border-box; /* This includes padding and border in the element's total width/height. */
-  } 
+  
   
