@@ -5,6 +5,8 @@ import { AuthProvider } from './auth-context';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
+import DeviceRegistration from './components/DeviceDetails/DeviceRegistration';
+import { DeviceProvider } from './DeviceContext';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Documentation from './components/Documentation/documentation';
@@ -22,13 +24,12 @@ function App() {
  return (
     <BrowserRouter>
      <AuthProvider>
-      <div className="App">
-        <div className="wave"></div>
-      <BlueCurveSection />      
-      <NavigationBar />
-      <ParticlesBackground />
-      
-
+      <DeviceProvider>
+       <div className="App">
+       <div className="wave"></div>
+       <BlueCurveSection />      
+       <NavigationBar />
+       <ParticlesBackground />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/compatibility" element={<CompatibilityPage />} />
@@ -40,9 +41,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/theme-settings" element={<ThemeSettings />} />
           <Route path="/documentation" element={<Documentation />} />
+          <Route path="/register-device" element={<DeviceRegistration />} />
         </Routes>
         <Footer />
       </div>
+      </DeviceProvider>
      </AuthProvider>
     </BrowserRouter>  
   );

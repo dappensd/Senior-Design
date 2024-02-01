@@ -1,17 +1,17 @@
 // DeviceDetails.js
 import React, { useState, useEffect } from 'react';
 import styles from './DeviceDetails.module.css';
-import AddDeviceButton from './AddDeviceButton/AddDeviceButton'; // Ensure this path is correct
+import AddDeviceButton from './AddDeviceButton/AddDeviceButton'; 
 import DeviceTable from './DeviceTable/DeviceTable';
 import SearchBar from './SearchBar/SearchBar';
 import TabNavigation from './TabNavigation/TabNavigation';
 import FilterSort from './FilterSort/FilterSort';
 
-// Mock components, replace with actual implementations
+
 
 const DeviceDetails = () => {
   const [devices, setDevices] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Assume there's some logic to determine logged-in state
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
   const [sort, setSort] = useState('Name');
@@ -19,8 +19,8 @@ const DeviceDetails = () => {
   const [activeTab, setActiveTab] = useState('All Devices');
 
   useEffect(() => {
-    // Fetch devices from your backend or Azure service
-    // This is where you would make an API call to fetch devices
+    // Fetch devices from backend or Azure 
+    // This is where we would make an API call to fetch devices
     // Example: axios.get('/api/devices').then(response => setDevices(response.data));
     setDevices([]); // Placeholder for fetched devices
   }, []);
@@ -43,7 +43,7 @@ const DeviceDetails = () => {
 
   // Handler to be called when the add device button is clicked
   const handleAddDeviceClick = () => {
-    // Here you can set the state to true to show the modal or form
+    // Here we can set the state to true to show the modal or form
     setShowAddDeviceModal(true);
   };
 
@@ -54,14 +54,14 @@ const DeviceDetails = () => {
   };
 
   const handleEditDevice = (device) => {
-    // You might set the state here to show a modal or form for editing
+    // We could set the state here to show a modal or form for editing
     // and pass the selected device's details to the form
     console.log('Editing device:', device);
     // For example: setShowEditModal(true); setEditingDevice(device);
   };
    
   const handleViewDeviceDetails = (device) => {
-    // You can handle the logic to view details here
+    // We can handle the logic to view details here
     // Maybe open a modal with the device's details
     console.log('Viewing details for device:', device);
     // For example: setShowDetailsModal(true); setViewingDevice(device);
@@ -71,8 +71,8 @@ const DeviceDetails = () => {
     // Confirm before deleting
     if (window.confirm(`Are you sure you want to delete ${device.name}?`)) {
       console.log('Deleting device:', device);
-      // Here you would typically make an API call to delete the device
-      // Then, you would update your state to remove the device from the list
+      // Here we could  make an API call to delete the device
+      // Then, we would update your state to remove the device from the list
       // For example:
       // deleteDeviceApi(device.id).then(() => {
       //   setDevices(devices.filter(d => d.id !== device.id));
@@ -101,7 +101,7 @@ const DeviceDetails = () => {
       {isLoggedIn && <AddDeviceButton onAddDevice={handleAddDeviceClick} />}
     
       {showAddDeviceModal && (
-        // Here you would include your modal or form component for adding a device
+        // Here we would include our modal or form component for adding a device
         <AddDeviceModal onClose={() => setShowAddDeviceModal(false)} />
       )}
     </div>
