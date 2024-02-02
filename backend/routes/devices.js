@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const { sendMessageToDevice } = require('./IoTHubService');
 const { CosmosClient } = require('@azure/cosmos');
+const { registerDevice } = require('./iothubservice');
 
 const client = new CosmosClient(process.env.COSMOS_DB_CONNECTION_STRING);
 const database = client.database('stayawaredb');
@@ -77,6 +78,43 @@ router.post('/devices/:id/send-command', passport.authenticate('jwt', { session:
         res.status(500).send('Failed to send command to device');
     }
 });
+
+// Endpoint for registering a new device with Azure IoT Hub
+router.post('/register-device', async (req, res) => {
+    // Extract device details from request body
+    const { deviceId, deviceInfo } = req.body;
+  
+    try {
+      // Register device with IoT Hub
+      const registrationResult = await registerDevice(deviceId, deviceInfo);
+  
+      // Here's where you store the device details in Cosmos DB
+      const deviceData = {
+        id: deviceId, // Unique identifier for the device
+        deviceType: deviceInfo.deviceType,
+        deviceModel: deviceInfo.deviceModel,
+        location: deviceInfo.location,
+        status: deviceInfo.status,
+        tags: deviceInfo.tags, // Additional metadata
+        iotHubRegistration: {
+          iotHubDeviceId: registrationResult.deviceId,
+          authenticationType: registrationResult.authenticationType,
+          primaryKey: registrationResult.authentication?.symmetricKey?.primaryKey,
+          secondaryKey: registrationResult.authentication?.symmetricKey?.secondaryKey,
+          connectionState: registrationResult.connectionState,
+          lastActivityTime: registrationResult.lastActivityTime,
+        },
+        // ... any other details we want to store ...
+      };
+  
+      // Create the item in the Cosmos DB container
+      const { resource: createdItem } = await container.items.create(deviceData);
+      res.status(201).json(createdItem);
+    } catch (error) {
+      console.error('Error registering device:', error);
+      res.status(500).send('Failed to register device');
+    }
+  });
 
 module.exports = router;
 
