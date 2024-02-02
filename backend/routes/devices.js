@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { sendMessageToDevice } = require('./IoTHubService');
+const { sendMessageToDevice } = require('../iothub/iothubservice');
 const { CosmosClient } = require('@azure/cosmos');
-const { registerDevice } = require('./iothubservice');
+const { registerDevice } = require('../iothub/iothubservice');
 
 const client = new CosmosClient(process.env.COSMOS_DB_CONNECTION_STRING);
 const database = client.database('stayawaredb');
@@ -87,6 +87,17 @@ router.post('/register-device', async (req, res) => {
     try {
       // Register device with IoT Hub
       const registrationResult = await registerDevice(deviceId, deviceInfo);
+
+        // Create a custom response object with relevant data
+     const responseData = {
+        deviceId: registrationResult.deviceId,
+        generationId: registrationResult.generationId,
+        etag: registrationResult.etag,
+        connectionState: registrationResult.connectionState,
+        status: registrationResult.status,
+        lastActivityTime: registrationResult.lastActivityTime,
+         // Include any other relevant device details here
+      };
   
       // Here's where you store the device details in Cosmos DB
       const deviceData = {
@@ -98,11 +109,9 @@ router.post('/register-device', async (req, res) => {
         tags: deviceInfo.tags, // Additional metadata
         iotHubRegistration: {
           iotHubDeviceId: registrationResult.deviceId,
-          authenticationType: registrationResult.authenticationType,
-          primaryKey: registrationResult.authentication?.symmetricKey?.primaryKey,
-          secondaryKey: registrationResult.authentication?.symmetricKey?.secondaryKey,
-          connectionState: registrationResult.connectionState,
           lastActivityTime: registrationResult.lastActivityTime,
+          connectionState: registrationResult.connectionState,
+          
         },
         // ... any other details we want to store ...
       };

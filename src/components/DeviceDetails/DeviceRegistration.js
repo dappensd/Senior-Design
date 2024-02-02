@@ -1,16 +1,17 @@
-// DeviceRegistration.js
-import React, { useState, useContext } from 'react';
-import { DeviceContext } from '../../DeviceContext';
-import styles from './DeviceRegistration.module.css'; 
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './DeviceRegistration.module.css';
 
 const DeviceRegistration = () => {
-  const { registerDevice } = useContext(DeviceContext); // Accessing registerDevice from DeviceContext
+  const navigate = useNavigate();
   const [device, setDevice] = useState({
-    name: '',
+    deviceId: '',
+    deviceType: '',
     location: '',
-    status: '',
-    lastActive: '',
+    // ...other fields...
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,39 +21,47 @@ const DeviceRegistration = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    registerDevice(device); 
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:3001/register-device', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(device),
+      });
+      
+      if (response.ok) {
+        navigate('/'); // Navigate to a success page or display a success message
+      } else {
+        const errorMsg = await response.text();
+        setError(errorMsg || 'Registration failed');
+      }
+    } catch (error) {
+      setError('Network error: Could not connect to server');
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className={styles.registrationContainer}>
+      {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
-          <input type="text" name="name" value={device.name} onChange={handleChange} />
+          Device ID:
+          <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
         </label>
-        <label>
-          Location:
-          <input type="text" name="location" value={device.location} onChange={handleChange} />
-        </label>
-        <label>
-          Status:
-          <select name="status" value={device.status} onChange={handleChange}>
-            <option value="">Select Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </label>
-        <label>
-          Last Active:
-          <input type="datetime-local" name="lastActive" value={device.lastActive} onChange={handleChange} />
-        </label>
-        <button type="submit">Register Device</button>
+        {/* ... other form fields ... */}
+        <button type="submit" disabled={loading}>Register Device</button>
       </form>
     </div>
   );
 };
 
 export default DeviceRegistration;
+
 
