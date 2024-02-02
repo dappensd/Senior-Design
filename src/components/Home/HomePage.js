@@ -3,7 +3,7 @@ import styles from './Homepage.module.css'; // Import styles from HomePage.modul
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '../../auth-context';
 
 function HomePage() {
   const { user } = useContext(AuthContext);
