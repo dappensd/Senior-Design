@@ -1,35 +1,63 @@
 .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 40px;
-    text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;  /* This margin-top might be influencing the vertical positioning */
-  }
-  
-.login-container h2 {
-    color: #000; /* Sets the color of the header to black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This makes sure the form is centered in the viewport */
 }
 
-.login-container p {
-    color: #000; /* Sets the color of the paragraph to black */
+.login-form {
+  width: 100%;
+  max-width: 400px; 
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  background-color: #040404; /* White background for the form */
+}
 
-}  
-  .login-label {
-    display: block;
-    margin: 10px 0 5px;  
-    color: #000000;
-    
-  }
-  
-  .login-input {
-    padding: 5px;
-    margin-bottom: 25px;  
-  }
-  
-  .login-submit {
-    padding: 15px 11px;
-    cursor: pointer;
-  }
+.login-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px; /* Increased spacing between the input fields */
+}
+
+.input-group input {
+  width: calc(100% - 40px);
+  padding: 10px; /* Makes input fields a bit taller */
+  border: 1px solid #ddd; /* Light border around the input fields */
+  border-radius: 5px; /* Rounded borders */
+  margin: 0 10px 20px 10px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px; /* Consistent with the input fields */
+  background-color: #5cb85c; /* A shade of green for the login button */
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.login-button:hover {
+  background-color: #4cae4c; /* Darken the button slightly on hover */
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Space between links and button */
+}
+
+.links a {
+  color: #333; /* Dark grey color for the links */
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

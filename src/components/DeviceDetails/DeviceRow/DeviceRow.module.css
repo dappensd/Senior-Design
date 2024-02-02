@@ -1,0 +1,28 @@
+/* DeviceRow.module.css */
+
+.deviceRow {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+  }
+  
+  .deviceRow:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .editButton {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .deleteButton {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

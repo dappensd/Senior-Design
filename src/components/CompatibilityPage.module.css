@@ -1,0 +1,31 @@
+.content {
+
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 80px;
+        text-align: center;
+    }
+
+    dt {
+        font-weight: bold;
+        text-decoration: underline;
+        padding:  0 0 0.5em 0;
+    }
+
+    dd {
+        margin-Bottom: 0.75em;
+        padding:  0 0 0.5em 0;
+        }
+
+    .link {
+        text-decoration: none;  
+        color: inherit;
+    }
+
+    .compatibility a:visited {
+        text-decoration: none;
+        color:black;
+    }
+
+}

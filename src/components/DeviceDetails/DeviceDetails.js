@@ -1,147 +1,118 @@
-import React from 'react';
-import './DeviceDetails.css';
-import { Link } from 'react-router-dom';
+// DeviceDetails.js
+import React, { useState, useEffect } from 'react';
+import styles from './DeviceDetails.module.css';
+import AddDeviceButton from './AddDeviceButton/AddDeviceButton'; 
+import DeviceTable from './DeviceTable/DeviceTable';
+import SearchBar from './SearchBar/SearchBar';
+import TabNavigation from './TabNavigation/TabNavigation';
+import FilterSort from './FilterSort/FilterSort';
 
-class DeviceDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    // Initialize the state with an empty list of devices
-    this.state = {
-      devices: [],
-      isLoggedIn: true, 
-    };
-  }
 
-  // Handler for form submission
-  handleRegisterDevice = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
 
-    // Create a new device object
-    const newDevice = {
-      deviceId: event.target.deviceId.value,
-      connectionString: event.target.deviceConnectionString.value,
-      deviceType: event.target.deviceType.value,
-      firmwareVersion: event.target.firmwareVersion.value,
-      ipAddress: event.target.ipAddress.value
-    };
+const DeviceDetails = () => {
+  const [devices, setDevices] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('All');
+  const [sort, setSort] = useState('Name');
+  const [showAddDeviceModal, setShowAddDeviceModal] = useState(false); // State to control the visibility of the add device modal
+  const [activeTab, setActiveTab] = useState('All Devices');
 
-    // Update the state with the new device
-    this.setState(prevState => ({
-      devices: [...prevState.devices, newDevice]
-    }));
+  useEffect(() => {
+    // Fetch devices from backend or Azure 
+    // This is where we would make an API call to fetch devices
+    // Example: axios.get('/api/devices').then(response => setDevices(response.data));
+    setDevices([]); // Placeholder for fetched devices
+  }, []);
 
-    // Optional: Clear the form fields after submission
-    event.target.reset();
-  }
+  // Handlers for search, filter, and sort changes
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+    // Implement the logic to handle search term change
+  };
 
-   // New method to handle logging in
-   handleLogin = (credentials) => {
-    // Logic to authenticate users goes here
-    // This usually involves sending a request to your backend service
+  const handleFilterChange = (value) => {
+    setFilter(value);
+    // Implement the logic to handle filter change
+  };
+
+  const handleSortChange = (value) => {
+    setSort(value);
+    // Implement the logic to handle sort change
+  };
+
+  // Handler to be called when the add device button is clicked
+  const handleAddDeviceClick = () => {
+    // Here we can set the state to true to show the modal or form
+    setShowAddDeviceModal(true);
+  };
+
+  const AddDeviceModal = () => {
+    // Placeholder for AddDeviceModal
+    // Implement your modal logic here
+    return null; // Return null or actual modal component
+  };
+
+  const handleEditDevice = (device) => {
+    // We could set the state here to show a modal or form for editing
+    // and pass the selected device's details to the form
+    console.log('Editing device:', device);
+    // For example: setShowEditModal(true); setEditingDevice(device);
+  };
    
+  const handleViewDeviceDetails = (device) => {
+    // We can handle the logic to view details here
+    // Maybe open a modal with the device's details
+    console.log('Viewing details for device:', device);
+    // For example: setShowDetailsModal(true); setViewingDevice(device);
+  };
   
-    // Simulating an API call (This is a placeholder until we get Backend functioning)
-    const fakeAPICall = new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+  const handleDeleteDevice = (device) => {
+    // Confirm before deleting
+    if (window.confirm(`Are you sure you want to delete ${device.name}?`)) {
+      console.log('Deleting device:', device);
+      // Here we could  make an API call to delete the device
+      // Then, we would update your state to remove the device from the list
+      // For example:
+      // deleteDeviceApi(device.id).then(() => {
+      //   setDevices(devices.filter(d => d.id !== device.id));
+      // });
+    }
+  };
+  
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    // Additional logic to filter devices based on the selected tab
+  };
 
-    fakeAPICall.then((isAuthenticated) => {
-      if (isAuthenticated) {
-        // If the user is authenticated, update the state
-        this.setState({ isLoggedIn: true });
-      } else {
-        // Handle login failure (e.g., display an error message)
-      }
-    });
-  }
-
-  // New method to handle signing up (Work in progress)
-  handleSignup = (userInfo) => {
-
-  }
-
-
-
-  render() {
-    // If the user is not logged in, we show the login/signup prompt (Needs Backend to function properly)
-    if (!this.state.isLoggedIn) {
-      return (
-        <div>
-        <p>You must be logged in to register a device.</p>
-        {/* Provide links to the Login and Registration pages */}
-        <Link to="/login">Log In</Link> {/* Update "/login" to your actual login route */}
-        <br />
-        <Link to="/register">Sign Up</Link> {/* Update "/register" to your actual registration route */}
+  return (
+    <div className={styles.deviceDetails}>
+      <TabNavigation activeTab={activeTab} onTabClick={handleTabClick} />
+      <div className={styles.searchFilterSection}>
+        <SearchBar value={searchTerm} onChange={handleSearchChange} />
+        <FilterSort filter={filter} onFilterChange={handleFilterChange} sort={sort} onSortChange={handleSortChange} />
       </div>
-    );
-  }
-     // If the user is logged in, we render the device registration form (Needs backend to function properly)
-    return (
-      <div className="device-details-container">
-        <h2>Register a New Device</h2>
-        {/* Updated form with onSubmit handler */}
-        <form onSubmit={this.handleRegisterDevice}>
-        <div>
-          <label htmlFor="deviceId">Device ID:</label>
-          <input type="text" id="deviceId" name="deviceId" required className="form-input"  />
-        </div>
-
-        <div>
-          <label htmlFor="deviceConnectionString">Device Connection String:</label>
-          <input type="text" id="deviceConnectionString" name="deviceConnectionString" required className="form-input" />
-        </div>
-
-        <div>
-          <label htmlFor="deviceType">Device Type/Model:</label>
-          <input type="text" id="deviceType" name="deviceType" required className="form-input" />
-        </div>
-
-        <div>
-          <label htmlFor="firmwareVersion">Device Firmware Version:</label>
-          <input type="text" id="firmwareVersion" name="firmwareVersion" required className="form-input" />
-        </div>
-
-        <div>
-          <label htmlFor="ipAddress">IP Address:</label>
-          <input type="text" id="ipAddress" name="ipAddress" required className="form-input" />
-        </div>
-
-        <div>
-          <input type="submit" value="Register Device" />
-        </div>
-        </form>
-
-        {/* Table displaying registered devices */}
-        <div className="registered-devices-container">
-          <h3>Registered Devices</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Device ID</th>
-                <th>Connection String</th>
-                <th>Device Type/Model</th>
-                <th>Firmware Version</th>
-                <th>IP Address</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Rows are dynamically created based on the devices in the state */}
-              {this.state.devices.map((device, index) => (
-                <tr key={index}>
-                  <td>{device.deviceId}</td>
-                  <td>{device.connectionString}</td>
-                  <td>{device.deviceType}</td>
-                  <td>{device.firmwareVersion}</td>
-                  <td>{device.ipAddress}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-  }
-}
+      <DeviceTable 
+       devices={devices} 
+       onEdit={handleEditDevice}
+       onViewDetails={handleViewDeviceDetails}
+       onDelete={handleDeleteDevice}
+      />
+      {isLoggedIn && <AddDeviceButton onAddDevice={handleAddDeviceClick} />}
+    
+      {showAddDeviceModal && (
+        // Here we would include our modal or form component for adding a device
+        <AddDeviceModal onClose={() => setShowAddDeviceModal(false)} />
+      )}
+    </div>
+  );
+};
 
 export default DeviceDetails;
+
+
+
+
 
 
 

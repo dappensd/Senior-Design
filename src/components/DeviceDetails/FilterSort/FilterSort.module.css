@@ -1,0 +1,26 @@
+/* FilterSort.module.css */
+
+.filterSortContainer {
+    display: flex;
+    justify-content: flex-end; /* Align to the right side */
+    align-items: center;
+    padding: 10px 0; /* Add padding on top and bottom */
+  }
+  
+  .filterContainer,
+  .sortContainer {
+    margin-left: 20px; /* Space between filter and sort selectors */
+  }
+  
+  .filterLabel,
+  .sortLabel {
+    margin-right: 10px; /* Space between the label and the selector */
+  }
+  
+  .filterSelect,
+  .sortSelect {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  

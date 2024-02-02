@@ -1,27 +1,35 @@
 
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './auth-context';
 import NavigationBar from './components/NavigationBar/NavigationBar';
-import HomePage from './components/HomePage';
+import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
-import SettingsPanel from './components/SettingsPanel';
+import DeviceRegistration from './components/DeviceDetails/DeviceRegistration';
+import { DeviceProvider } from './DeviceContext';
+import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
+import Documentation from './components/Documentation/documentation';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
+import About from './components/About/About';
 import './App.css';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import BlueCurveSection from './components/BlueCurveSection';
+import ParticlesBackground from './components/ParticlesBackground';
+import ThemeSettings from './components/Settings/ThemeSettings';
 
 
 function App() {
-  return (
+ return (
     <BrowserRouter>
-      <div className="App">
-        <div className="wave">  </div>
-      <BlueCurveSection />      
-      <NavigationBar />
-      
-
+     <AuthProvider>
+      <DeviceProvider>
+       <div className="App">
+       <div className="wave"></div>
+       <BlueCurveSection />      
+       <NavigationBar />
+       <ParticlesBackground />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/compatibility" element={<CompatibilityPage />} />
@@ -30,13 +38,18 @@ function App() {
           <Route path="/settings" element={<SettingsPanel />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/theme-settings" element={<ThemeSettings />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/register-device" element={<DeviceRegistration />} />
         </Routes>
         <Footer />
       </div>
-    </BrowserRouter>
+      </DeviceProvider>
+     </AuthProvider>
+    </BrowserRouter>  
   );
 }
-
 
 
 export default App;
