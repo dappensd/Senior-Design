@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+
 function SlideArrows(props) {
   const { className, style, onClick } = props;
   return (
@@ -26,6 +27,8 @@ function HomePage() {
     prevArrow: <SlideArrows />,
     nextArrow: <SlideArrows />
   };
+
+  
 
   return (
     <div>

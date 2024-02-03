@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.App {
+  text-align: center;
+  /* Removed background image because it's defined again in .layer1 */
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  transition: margin-left 0.3s;
+}
+.App.sidebarOpen {
+  margin-left: 250px;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+ 
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Prompt', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+ 
+#light {
+  background-color: #f3ebf6;
+}
+
+#dark {
+  background-color: #46045e;
+}
+
+
+
+
+
+ 
+  
