@@ -82,7 +82,7 @@
 }
 
 .navItem:hover {
-  background-color: #374151;
+  background-color: #848383;
 }
 
 .navIcon {
@@ -101,9 +101,9 @@
   padding: 0.5rem 1rem;
 }
 
-.navLink:hover {
-  background-color: #ddd;
-}
+/*.navLink:hover {
+ background-color: #ddd;
+} /*
 
 /* Footer section of the sidebar */
 .navFooter {
