@@ -7,10 +7,13 @@ const { jwtMiddleware } = require('./../middlewares.js');
 const nodemailer = require('nodemailer'); // Import Nodemailer for sending emails
 const { check, validationResult } = require('express-validator'); // For validation
 
+
 // Environment Variables for Nodemailer and JWT
 const EMAIL_USERNAME = process.env.EMAIL_USERNAME;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 const JWT_SECRET = process.env.JWT_SECRET;
+
+
 
 // Email transporter setup
 let transporter = nodemailer.createTransport({
@@ -96,9 +99,15 @@ router.post('/register', [
           res.status(500).json({ msg: 'Server error' });
       }
   });
-
+ 
+  // Login Endpoint
   router.post('/login', async (req, res) => {
+    console.log('Login request body:', req.body);
     const { username, password } = req.body;
+    if (!username || !password) {
+        console.log('Missing username or password in request:', { username, password });
+        return res.status(400).json({ msg: 'Missing username or password' });
+      }
     console.log('Login request received for username:', username);
 
     try {

@@ -1,58 +1,36 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
-import { AuthContext } from '../.././auth-context';
-import { Button, TextField, Box, Typography, Container, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth-context';
+import { TextField, Button, Container, Typography, Box, Link } from '@mui/material';
 import { generateCodeVerifier, generateCodeChallenge } from './pkce';
 
-
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const [error, setError] = useState(''); // State to hold error messages
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
   const auth = useContext(AuthContext);
-  console.log("Auth context: ", auth);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Initialize navigate function
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials(prevState => ({
-      ...prevState,
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCredentials(prevCredentials => ({
+      ...prevCredentials,
       [name]: value
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(''); // Clear any existing errors
-    console.log('Attempting login with:', credentials);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const payload = { 
-        username: credentials.username,
-        password: credentials.password,
-      };
-
-      const response = await fetch('http://localhost:3001/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!response.ok) {
-        // If the response is not OK, throw an error with the status
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      const response = await auth.login(credentials);
+      const data = await response.json();
+      if (response.ok) {
+        auth.setUser(data.user);
+        navigate('/');
+      } else {
+        throw new Error(data.message || 'Login failed');
       }
-  
-      const data = await response.json(); // Get the response data
-      console.log('Login successful:', data);
-      // Here you might want to save the login token to local storage or context
-  
-      navigate('/'); // Redirect to the home page after login
     } catch (error) {
-      console.error('Login error:', error);
-      // Here, set the error message to state to display in the UI
-      setError('Failed to login. Please check your credentials.');
+      setError(error.message);
     }
   };
 

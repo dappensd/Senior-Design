@@ -5,70 +5,56 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null); // Add state to store user data
   const navigate = useNavigate();
 
-   // Use useEffect to log state changes
-   useEffect(() => {
-    console.log('isLoggedIn state changed to:', isLoggedIn);
-  }, [isLoggedIn]);
+  useEffect(() => {
+    console.log(`The current logged in state is: ${isLoggedIn}`);
+  }, [isLoggedIn, user]); // Add user to the dependency array
 
-  // Function to log in the user
   const login = async (credentials) => {
     try {
-      console.log('Attempting login with credentials:', credentials);
-      const response = await fetch('/auth/login', {
+      const response = await fetch('http://localhost:3001/users/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Make sure credentials are included
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(credentials),
       });
+
       if (!response.ok) {
-        console.log('Login response not OK:', response);
         throw new Error('Login failed');
       }
 
-      console.log('Before login, isLoggedIn:', isLoggedIn);
-
+      const data = await response.json();
+      setUser(data.user); // Store the user data in state
       setIsLoggedIn(true);
-
-      console.log('After login, isLoggedIn:', isLoggedIn);
-
-      navigate('/'); // Navigate to home page after login
+      navigate('/');
     } catch (error) {
-      console.error('Error during login:', error);
-      throw error; // Rethrow the error to be handled in the login form
+      console.error('Login error:', error);
     }
   };
 
-  // Function to log out the user
   const logout = async () => {
     try {
-      await fetch('/auth/logout', {
+      await fetch('http://localhost:3001/users/logout', {
         method: 'POST',
-        credentials: 'include', // Make sure credentials are included
+        credentials: 'include',
       });
 
-       console.log('Before logout, isLoggedIn:', isLoggedIn);
-
-       setIsLoggedIn(false);
-
-       console.log('After logout, isLoggedIn:', isLoggedIn);
-
-       navigate('/login'); // Navigate to the login page
-
+      setUser(null); // Clear the user data
+      setIsLoggedIn(false);
+      navigate('/login');
     } catch (error) {
-      console.error(error);
+      console.error('Logout error:', error);
     }
   };
 
-  console.log("AuthProvider values", { isLoggedIn, login, logout });
-
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+
 

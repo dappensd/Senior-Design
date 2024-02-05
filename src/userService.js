@@ -1,14 +1,5 @@
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-export const login = (credentials) => {
-  return fetch(`${backendUrl}/auth/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  });
-};
 
 export const getProfile = (token) => {
   return fetch(`${backendUrl}/user/profile`, {

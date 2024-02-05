@@ -303,7 +303,7 @@ const particlesConfig = {
         },
         "random": false,
         "size": false,
-        "speed": 2,
+        "speed": 0.5,  // speed of particles
         "spin": {
           "acceleration": 0,
           "enable": false
@@ -319,9 +319,9 @@ const particlesConfig = {
       },
       "number": {
         "density": {
-          "enable": false,
-          "width": 1920,
-          "height": 1080
+          "enable": true, // Manipulates number of particles height and width wise
+          "width": 2020,
+          "height": 1580
         },
         "limit": 0,
         "value": 80
@@ -338,7 +338,7 @@ const particlesConfig = {
         "animation": {
           "count": 0,
           "enable": true,
-          "speed": 3,
+          "speed": 1, // speed of the fading in and out animation of the particles
           "decay": 0,
           "delay": 0,
           "sync": false,
@@ -460,6 +460,9 @@ const particlesConfig = {
           "opacity": 1
         },
         "particles": {
+          "number": {
+            "value": 5 
+          },
           "enable": false,
           "frequency": 0.05,
           "opacity": 1
@@ -470,7 +473,7 @@ const particlesConfig = {
         "enable": false,
         "speed": {
           "angle": 50,
-          "move": 10
+          "move": 1
         }
       },
       "life": {
