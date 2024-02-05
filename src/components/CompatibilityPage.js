@@ -5,10 +5,8 @@ function CompatibilityPage() {
   return (
     <div className={styles.content}>
       <h1> Compatible Devices: </h1>
-
-        <div>
+        <div className={styles.subcontent}>
           <dl>
-
             <div>
               <dt> <a href='https://www.amazon.com/LIFX-E12-Candle-Color-Wi-Fi/dp/B07XKYKJ9Q' target="_blank" rel=" noopener noreferrer"> LIFX Candle Color Wi-Fi Smart LED Multicolors Light Bulb </a> </dt>
                 <dd>- Smart light bulb that can be controlled from the cloud on iOS, Android, and PC! </dd>

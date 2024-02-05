@@ -6,7 +6,7 @@ import styles from './SettingsPanel.module.css';
 function SettingsPanel() {
   return (
     <div className={styles.settings}>
-      <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Settings</h1>
+      <h1 style={{fontSize: '2em', fontWeight: 'bold', textAlign: 'center'}}>Settings</h1>
       <div> 
         <nav>
            <div className={styles.themes}>

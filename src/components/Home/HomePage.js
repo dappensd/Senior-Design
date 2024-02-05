@@ -18,7 +18,7 @@ function HomePage() {
   return (
     <div>
       <div>
-        <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Welcome to Our Website</h1>
+        <h1 style={{fontSize: '2em', fontWeight: 'bold', textAlign: 'center'}}>Welcome to Our Website</h1>
         {
            user
            ? <p>Welcome back, {user.username}!</p>
