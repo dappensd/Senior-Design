@@ -3,7 +3,6 @@
     h1 {
         font-size: 2em;
         font-weight: bold;
-        padding-top: 80px;
         text-align: center;
     }
 
@@ -27,5 +26,13 @@
         text-decoration: none;
         color:black;
     }
+}
 
+.subcontent {
+    border: 2px solid #333;
+    color:black;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
 }
