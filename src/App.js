@@ -9,12 +9,16 @@ import DeviceRegistration from './components/DeviceDetails/DeviceRegistration';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Documentation from './components/Documentation/documentation';
+import Navigation from './components/Documentation/Navigation';
+import DeviceManagement from './components/Documentation/DeviceManagement';
+import LoginGuide from './components/Documentation/LoginGuide';
 import Footer from './components/Footer';
 import CompatibilityPage from './components/CompatibilityPage';
 import About from './components/About/About';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import ParticlesBackground from './components/ParticlesBackground';
 import ThemeSettings from './components/Settings/ThemeSettings';
+
 
 import styles from './App.module.css'; // Ensure this import path is correct
 
@@ -37,7 +41,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/theme-settings" element={<ThemeSettings />} />
         <Route path="/documentation" element={<Documentation />} />
+        <Route path="/Navigation" element={<Navigation />} />
+        <Route path="/DeviceManagement" element={<DeviceManagement />} />
+        <Route path="/LoginGuide" element={<LoginGuide />} />
         <Route path="/register-device" element={<DeviceRegistration />} />
+
       </Routes>
       <Footer />
     </div>

@@ -1,0 +1,25 @@
+.title {
+    font-weight: bold;
+    padding-top: 80px; 
+    text-align: center;
+}  
+
+.content {
+    h2 {
+        text-align: left;
+        font-size: 1.75em;
+    }
+
+    ul {
+        text-align: left;
+        font-weight: bold;
+        font-size: 1.25em;
+    }
+
+    li {
+        padding: 10px;
+    }
+   
+}
+
+
