@@ -176,7 +176,12 @@ router.post('/register', [
     }
 });
 
-
+// Logout Endpoint
+router.post('/logout', (req, res) => {
+    res.clearCookie('sessionToken');  // Clear the sessionToken cookie
+    console.log('User logged out successfully');
+    res.status(200).json({ msg: 'Logout successful' });
+});
 
 // Password reset request endpoint
 router.post('/password-reset-request', [
