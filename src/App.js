@@ -19,6 +19,7 @@ import About from './components/About/About';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import ParticlesBackground from './components/ParticlesBackground';
 import ThemeSettings from './components/Settings/ThemeSettings';
+import Dashboard from './components/Home/Dashboard';
 
 
 import styles from './App.module.css'; // Ensure this import path is correct
@@ -33,6 +34,7 @@ function App() {
       <ParticlesBackground />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/compatibility" element={<CompatibilityPage />} />
         <Route path="/devices" element={<DeviceDetails />} />
         <Route path="/device/:id" element={<DeviceDetails />} />

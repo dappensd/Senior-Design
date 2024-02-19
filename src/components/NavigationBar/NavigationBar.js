@@ -31,6 +31,9 @@ function NavigationBar() {
         </div>
         <nav className={styles.navMenu}>
           <ul className={styles.navList}>
+          <li className={styles.navItem}>
+              <Link to="/dashboard" className={styles.navLink}><FaHome className={styles.navIcon} /> Dashboard</Link>
+            </li>
             <li className={styles.navItem}>
               <Link to="/" className={styles.navLink}><FaHome className={styles.navIcon} /> Home</Link>
             </li>
