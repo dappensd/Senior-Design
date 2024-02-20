@@ -9,9 +9,15 @@
 
 .content {
     h2{
-        text-align: left;
+        text-align: center;
     }
     
     text-align: left;
+    font: bold;
+
+    h3 {
+        text-align: 
+    }
     
 }
+
