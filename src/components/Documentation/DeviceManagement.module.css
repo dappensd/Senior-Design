@@ -16,7 +16,8 @@
     font: bold;
 
     h3 {
-        text-align: 
+        text-align: center;
+        font-weight: bold; 
     }
     
 }
