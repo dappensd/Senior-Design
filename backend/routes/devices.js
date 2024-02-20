@@ -4,15 +4,17 @@ const passport = require('passport');
 const { sendMessageToDevice } = require('../iothub/iothubservice');
 const { CosmosClient } = require('@azure/cosmos');
 const { registerDevice } = require('../iothub/iothubservice');
+const util = require('util');
 
 const client = new CosmosClient(process.env.COSMOS_DB_CONNECTION_STRING);
 const database = client.database('stayawaredb');
-const container = database.container('iotDevices');
+const container2 = database.container('iotDevices');
+
 
 // Retrieve all devices
 router.get('/devices', async (req, res) => {
     try {
-        const { resources: devices } = await container.items
+        const { resources: devices } = await container2.items
             .query('SELECT * from c')
             .fetchAll();
         res.json(devices);
@@ -24,7 +26,7 @@ router.get('/devices', async (req, res) => {
 // Retrieve a single device by ID
 router.get('/devices/:id', async (req, res) => {
     try {
-        const { resource: device } = await container.item(req.params.id).read();
+        const { resource: device } = await container2.item(req.params.id).read();
         if (device) {
             res.json(device);
         } else {
@@ -38,7 +40,7 @@ router.get('/devices/:id', async (req, res) => {
 // Create a new device
 router.post('/devices', async (req, res) => {
     try {
-        const { resource: createdItem } = await container.items.create(req.body);
+        const { resource: createdItem } = await container2.items.create(req.body);
         res.status(201).json(createdItem);
     } catch (error) {
         res.status(500).send(error.message);
@@ -48,7 +50,7 @@ router.post('/devices', async (req, res) => {
 // Update an existing device
 router.put('/devices/:id', async (req, res) => {
     try {
-        const { resource: replacedItem } = await container
+        const { resource: replacedItem } = await container2
             .item(req.params.id)
             .replace(req.body);
         res.json(replacedItem);
@@ -60,70 +62,47 @@ router.put('/devices/:id', async (req, res) => {
 // Delete a device
 router.delete('/devices/:id', async (req, res) => {
     try {
-        await container.item(req.params.id).delete();
+        await container2.item(req.params.id).delete();
         res.send('Device deleted');
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
 
-router.post('/devices/:id/send-command', passport.authenticate('jwt', { session: false }), async (req, res) => {
+router.post('/register-device', async (req, res) => {
+    const { deviceId, deviceInfo } = req.body;
+    console.log('Request to register device:', util.inspect({ deviceId, deviceInfo }, { depth: null }));
+
     try {
-        const { command } = req.body; 
-        const deviceId = req.params.id;
-        await sendMessageToDevice(deviceId, command);
-        res.status(200).send(`Command sent to device ${deviceId}`);
+        const registrationResult = await registerDevice(deviceId, deviceInfo);
+        console.log('Result from registerDevice:', util.inspect(registrationResult, { depth: null }));
+
+        const response = {
+            deviceId: registrationResult.deviceId,
+            generationId: registrationResult.generationId,
+            status: registrationResult.status,
+            connectionState: registrationResult.connectionState
+        };
+
+        res.status(201).json(response);
+
+        // Insert the registered device into Cosmos DB
+        const { resource: createdItem } = await container2.items.create({
+            id: response.deviceId,
+            // other device details we want to store can be added here
+            generationId: response.generationId,
+            status: response.status,
+            connectionState: response.connectionState,
+            // Include deviceInfo if available
+            ...(deviceInfo && { deviceInfo })
+        });
+
+        console.log(`Device stored in Cosmos DB:`, util.inspect(createdItem, { depth: null }));
+
     } catch (error) {
-        console.error('Error sending command to device:', error);
-        res.status(500).send('Failed to send command to device');
+        res.status(500).send('Failed to register device or insert into Cosmos DB');
     }
 });
-
-// Endpoint for registering a new device with Azure IoT Hub
-router.post('/register-device', async (req, res) => {
-    // Extract device details from request body
-    const { deviceId, deviceInfo } = req.body;
-  
-    try {
-      // Register device with IoT Hub
-      const registrationResult = await registerDevice(deviceId, deviceInfo);
-
-        // Create a custom response object with relevant data
-     const responseData = {
-        deviceId: registrationResult.deviceId,
-        generationId: registrationResult.generationId,
-        etag: registrationResult.etag,
-        connectionState: registrationResult.connectionState,
-        status: registrationResult.status,
-        lastActivityTime: registrationResult.lastActivityTime,
-         // Include any other relevant device details here
-      };
-  
-      // Here's where you store the device details in Cosmos DB
-      const deviceData = {
-        id: deviceId, // Unique identifier for the device
-        deviceType: deviceInfo.deviceType,
-        deviceModel: deviceInfo.deviceModel,
-        location: deviceInfo.location,
-        status: deviceInfo.status,
-        tags: deviceInfo.tags, // Additional metadata
-        iotHubRegistration: {
-          iotHubDeviceId: registrationResult.deviceId,
-          lastActivityTime: registrationResult.lastActivityTime,
-          connectionState: registrationResult.connectionState,
-          
-        },
-        // ... any other details we want to store ...
-      };
-  
-      // Create the item in the Cosmos DB container
-      const { resource: createdItem } = await container.items.create(deviceData);
-      res.status(201).json(createdItem);
-    } catch (error) {
-      console.error('Error registering device:', error);
-      res.status(500).send('Failed to register device');
-    }
-  });
 
 module.exports = router;
 
