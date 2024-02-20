@@ -5,16 +5,28 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { AuthContext } from '../../auth-context';
 
-function HomePage() {
-  const { user } = useContext(AuthContext);
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3
-  };
+  function SlideArrows(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black" }}
+        onClick={onClick}
+      />
+    );
+  }
 
+  function HomePage() {
+    const { user } = useContext(AuthContext);
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      prevArrow: <SlideArrows />,
+      nextArrow: <SlideArrows />
+    };
   return (
     <div>
       <div>
@@ -29,54 +41,70 @@ function HomePage() {
       <div className={styles.description}>
         <h2> Credible Articles for Device Protection: </h2>
         <Slider {...settings}>
+          
+           <div className={styles.card}>
+            <img src="Images/article4.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
+            </div>
+          </div>
+
           <div className={styles.card}>
             <img src="Images/article1.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
-              <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT protection can be a costly mistake</a>
+              <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT Protection Can Be a Costly Mistake</a>
             </div>
           </div>
+
           <div className={styles.card}>
             <img src="Images/article2.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
-              <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and connected devices is a global challenge</a>
+              <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and Connected Devices is a Global Challenge</a>
             </div>
           </div>
+
           <div className={styles.card}>
             <img src="Images/article3.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
-              <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% face challenges securing IoT & connected devices</a>
+              <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% Face Challenges Securing IoT & Connected Devices</a>
             </div>
           </div>
-          <div className={styles.card}>
-            <img src="Images/article1.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://www.helpnetsecurity.com/2023/10/16/iot-security-strategy/" target="_blank" rel="noreferrer" >Inadequate IoT protection can be a costly mistake</a>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <img src="Images/article2.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://futureiot.tech/securing-iot-and-connected-devices-is-a-global-challenge/" target="_blank" rel="noreferrer">Securing IoT and connected devices is a global challenge</a>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <img src="Images/article3.jpg" alt="" className={styles.center} />
-            <div className={styles.articleLink}>
-              <a href="https://www.securitymagazine.com/articles/99993-survey-97-face-challenges-securing-iot-and-connected-devices" target="_blank" rel="noreferrer">Survey: 97% face challenges securing IoT & connected devices</a>
-            </div>
-          </div>
+
           <div className={styles.card}>
             <img src="Images/article5.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
               <a href="https://venturebeat.com/security/why-attackers-love-to-target-iot-devices/" target="_blank" rel="noreferrer"> Why Attackers Love to Target IoT Devices</a>
             </div>
           </div>
+
           <div className={styles.card}>
-            <img src="Images/article4.jpg" alt="" className={styles.center} />
+            <img src="Images/article8.jpg" alt="" className={styles.center} />
             <div className={styles.articleLink}>
-              <a href="https://builtin.com/internet-things/iot-devices" target="_blank" rel="noreferrer"> What are some common IoT devices at home and work?</a>
+              <a href="https://www.theverge.com/2021/3/9/22322122/verkada-hack-150000-security-cameras-tesla-factory-cloudflare-jails-hospitals" target="_blank" rel="noreferrer"> Verkada Hack Exposes 150,000 Security Cameras</a>
             </div>
           </div>
+
+          <div className={styles.card}>
+            <img src="Images/article9.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://robots.net/tech/what-is-iot-hub/" target="_blank" rel="noreferrer"> What is an IoT Hub?</a>
+            </div>
+          </div>
+
+          <div className={styles.card}>
+            <img src="Images/article6.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://www.byos.io/blog/iot-device-security" target="_blank" rel="noreferrer"> Four IoT Device Security Best Practices for Every Organization</a>
+            </div>
+          </div>
+
+          <div className={styles.card}>
+            <img src="Images/article7.jpg" alt="" className={styles.center} />
+            <div className={styles.articleLink}>
+              <a href="https://www.ul.com/insights/us-cyber-trust-mark" target="_blank" rel="noreferrer"> The US Cyber Trust Mark </a>
+            </div>
+          </div>
+
         </Slider>
       </div>
       <div className={styles.description}>

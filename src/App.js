@@ -14,7 +14,7 @@ import Navigation from './components/Documentation/Navigation';
 import DeviceManagement from './components/Documentation/DeviceManagement';
 import LoginGuide from './components/Documentation/LoginGuide';
 import Footer from './components/Footer';
-import CompatibilityPage from './components/CompatibilityPage';
+import CompatibilityPage from './components/CompatibilityPage/CompatibilityPage';
 import About from './components/About/About';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import ParticlesBackground from './components/ParticlesBackground';
