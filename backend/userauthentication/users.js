@@ -81,7 +81,7 @@ router.post('/register', [
           const salt = await bcrypt.genSalt(10);
           const hashedPassword = await bcrypt.hash(password, salt);
   
-          // Save user to the database
+          // Save user to the database 
           const newUser = {
               username,
               email,

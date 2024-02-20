@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const { registerDevice } = require('./iothub/iothubservice');
+
 
 
 // Routers
@@ -53,19 +53,7 @@ app.get('/auth/azure/callback',
             res.redirect('/login?loginError=true');
         }
     });
-
- // Endpoint for registering a new device   
-app.post('/register-device', async (req, res) => {
-    const { deviceId, deviceInfo } = req.body; // Get the deviceId and deviceInfo from the request body
-    try {
-        const registrationResult = await registerDevice(deviceId, deviceInfo); // Register the device with IoT Hub
-         res.status(200).json({ message: 'Device registered successfully', registrationResult }); // Send a success response back
-    } catch (error) {
-        console.error('Device registration failed:', error);
-        res.status(500).json({ message: 'Device registration failed', error }); // Send an error response back
-    }
- });   
-
+ 
 app.get('/', (req, res) => {
   res.send('Hello World! This is the response from the backend server.');
 });

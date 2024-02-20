@@ -27,7 +27,7 @@ const DeviceRegistration = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3001/register-device', {
+      const response = await fetch('http://localhost:3001/devices/register-device', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(device),
