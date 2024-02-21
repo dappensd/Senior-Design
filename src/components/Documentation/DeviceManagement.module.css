@@ -20,5 +20,8 @@
         font-weight: bold; 
     }
     
+    ul {
+        text-align: center;
+    }
 }
 
