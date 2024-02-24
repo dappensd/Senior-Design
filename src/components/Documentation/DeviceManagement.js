@@ -13,12 +13,12 @@ function DeviceManagement() {
                     <h2> Adding an LIFX Device </h2>
                         <h3> Requirements: </h3>
                             <ul>
-                                <li> An LIFX Account  </li>
+                                <li> An LIFX Account </li>
                                 <li> Device Name </li>
                                 <li> LIFX Device </li>
                             </ul>
-                        <div>
-                            <h4> Instructions: </h4>
+                        <div className={styles.subcontent}>
+                            <h3> Instructions: </h3>
                                 <ol>
                                     <li> Create an LIFX account at <a href="https://cloud.lifx.com" target="_blank" rel="noreferrer">https//cloud.lifx.com</a></li>
                                     <li> Click on your account in the upper-right corner of the screen, then select <b> Personal Access Tokens</b></li>
@@ -34,7 +34,7 @@ function DeviceManagement() {
                                             <li> Enter a unique and strong password in the <b>Password</b> field.</li>
                                             <li> Select the <b> Sign Up </b> to finish creating the account.</li>
                                         </ul>
-                                    <li> Once you hav an account created, select the <b> Documentation</b> page in the nav bar, then select <b> Add New Device</b> </li>
+                                    <li> Once you have an account created, select the <b> Documentation</b> page in the nav bar, then select <b> Add New Device</b> </li>
                                     <li> Enter a unique name for the <b>Device ID</b> field and the token in the <b>Token</b> field.</li>
                                 </ol>
                         </div>
