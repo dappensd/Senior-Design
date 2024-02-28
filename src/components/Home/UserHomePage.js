@@ -3,6 +3,7 @@ import styles from './UserHomePage.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { motion } from 'framer-motion'
 
 
 function SlideArrows(props) {
@@ -31,7 +32,11 @@ function HomePage() {
   
 
   return (
-    <div>
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+    >
       <div>
         <h1 style={{fontSize: '2em', fontWeight: 'bold', paddingTop: '80px', textAlign: 'center'}}>Welcome to Our Website</h1>
       </div>
@@ -118,7 +123,7 @@ function HomePage() {
         <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
         <p style={{textAlign: 'center'}}> Guest users can still access our updated newsletters on the latest threats to IoT security! Just click on any of the article links provided. </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

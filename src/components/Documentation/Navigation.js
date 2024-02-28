@@ -1,11 +1,16 @@
 import React from 'react';
 import styles from './Navigation.module.css'
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
 
 
 function Navigation() {
     return (
-        <div>
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+        >
             <div className={styles.title}> 
                 <h1> Navigating Stay Aware </h1>
             </div>
@@ -70,7 +75,7 @@ function Navigation() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
     

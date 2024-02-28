@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { LayoutContext } from './layoutcontext'; // Import only LayoutContext
+import { AnimatePresence } from 'framer-motion';
 
 
 import NavigationBar from './components/NavigationBar/NavigationBar';
@@ -19,35 +20,39 @@ import About from './components/About/About';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import ParticlesBackground from './components/ParticlesBackground';
 import ThemeSettings from './components/Settings/ThemeSettings';
-
+import "./App.css"
 
 import styles from './App.module.css'; // Ensure this import path is correct
 
 function App() {
   // Use the context here as App is a child of LayoutProvider defined in index.js
   const { isSidebarOpen } = useContext(LayoutContext);
+  // useLocation is for use with framer-motion and page transition animations
+  const location = useLocation();
 
   return (
     <div className={`${styles.App} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
       <NavigationBar />
       <ParticlesBackground />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/compatibility" element={<CompatibilityPage />} />
-        <Route path="/devices" element={<DeviceDetails />} />
-        <Route path="/device/:id" element={<DeviceDetails />} />
-        <Route path="/settings" element={<SettingsPanel />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/theme-settings" element={<ThemeSettings />} />
-        <Route path="/documentation" element={<Documentation />} />
-        <Route path="/Navigation" element={<Navigation />} />
-        <Route path="/DeviceManagement" element={<DeviceManagement />} />
-        <Route path="/LoginGuide" element={<LoginGuide />} />
-        <Route path="/register-device" element={<DeviceRegistration />} />
+      <AnimatePresence mode="wait"> 
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/compatibility" element={<CompatibilityPage />} />
+          <Route path="/devices" element={<DeviceDetails />} />
+          <Route path="/device/:id" element={<DeviceDetails />} />
+          <Route path="/settings" element={<SettingsPanel />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/theme-settings" element={<ThemeSettings />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/Navigation" element={<Navigation />} />
+          <Route path="/DeviceManagement" element={<DeviceManagement />} />
+          <Route path="/LoginGuide" element={<LoginGuide />} />
+          <Route path="/register-device" element={<DeviceRegistration />} />
 
-      </Routes>
+        </Routes>
+      </AnimatePresence>
       <Footer />
     </div>
   );

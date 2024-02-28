@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './About.module.css';
+import { motion } from 'framer-motion'
 
 function About() {
     return (
-        <body className={styles.layout}>
+        <motion.div className={styles.layout}
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+            >
             <h1>About the Website</h1>
             <img className={styles.banner} src="Images/iotbanner.png" alt="IoT banner" />
             <div className={styles.column}> 
@@ -63,7 +68,7 @@ function About() {
             </div>
           
             
-        </body>
+        </motion.div>
     )
 }
 

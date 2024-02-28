@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth-context';
 import { TextField, Button, Container, Typography, Box, Link } from '@mui/material';
 import { generateCodeVerifier, generateCodeChallenge } from './pkce';
+import { motion } from 'framer-motion'
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -90,6 +91,11 @@ const LoginPage = () => {
   };
 
   return (
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+    >
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -164,6 +170,7 @@ const LoginPage = () => {
         </Box>
       </Box>
     </Container>
+    </motion.div>
   );
 };
 

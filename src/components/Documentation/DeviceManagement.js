@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './DeviceManagement.module.css';
+import { motion } from 'framer-motion'
 
 function DeviceManagement() {
     return (
-        <div className={styles.layout}>
+        <motion.div className={styles.layout}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        exit={{opacity: 0}}
+        >
             <div>
                 <div>
                     <h1> Device Management </h1>
@@ -40,7 +45,7 @@ function DeviceManagement() {
                         </div>
                 </div>  
             </div>
-        </div>
+        </motion.div>
 
     )
 }
