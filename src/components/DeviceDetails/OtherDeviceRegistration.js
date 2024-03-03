@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './OtherDeviceRegistration.module.css';
-import styles from './DeviceRegistration.module.css';
 import { motion } from 'framer-motion'
 
 const OtherDeviceRegistration = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './RaspBerryPiDeviceRegistration.module.css';
-import { motion } from 'framer-motion'
+import styles from './RaspberryPiDeviceRegistration.module.css';
+import { motion } from 'framer-motion';
 
 const RaspberryPiDeviceRegistration = () => {
   const navigate = useNavigate();
@@ -67,6 +67,6 @@ const RaspberryPiDeviceRegistration = () => {
   );
 };
 
-export default RaspBerryPiDeviceRegistration;
+export default RaspberryPiDeviceRegistration;
 
 

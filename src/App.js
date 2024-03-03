@@ -55,12 +55,14 @@ function App() {
         <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
         <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
         <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
+      </Routes>
 
       <AnimatePresence mode="wait"> 
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<HomePage />} />
           <Route path="/compatibility" element={<CompatibilityPage />} />
           <Route path="/devices" element={<DeviceDetails />} />
+          <Route path="/select-device" element={<SelectDevice />} />
           <Route path="/device/:id" element={<DeviceDetails />} />
           <Route path="/settings" element={<SettingsPanel />} />
           <Route path="/login" element={<LoginPage />} />
@@ -71,8 +73,9 @@ function App() {
           <Route path="/Navigation" element={<Navigation />} />
           <Route path="/DeviceManagement" element={<DeviceManagement />} />
           <Route path="/LoginGuide" element={<LoginGuide />} />
-          <Route path="/register-device" element={<DeviceRegistration />} />
-
+          <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
+          <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
+          <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
         </Routes>
       </AnimatePresence>
       <Footer />
