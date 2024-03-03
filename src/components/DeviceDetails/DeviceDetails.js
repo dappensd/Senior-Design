@@ -6,6 +6,7 @@ import DeviceTable from './DeviceTable/DeviceTable';
 import SearchBar from './SearchBar/SearchBar';
 import TabNavigation from './TabNavigation/TabNavigation';
 import FilterSort from './FilterSort/FilterSort';
+import { motion } from 'framer-motion'
 
 
 
@@ -86,7 +87,11 @@ const DeviceDetails = () => {
   };
 
   return (
-    <div className={styles.deviceDetails}>
+    <motion.div className={styles.deviceDetails}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+    >
       <TabNavigation activeTab={activeTab} onTabClick={handleTabClick} />
       <div className={styles.searchFilterSection}>
         <SearchBar value={searchTerm} onChange={handleSearchChange} />
@@ -104,7 +109,7 @@ const DeviceDetails = () => {
         // Here we would include our modal or form component for adding a device
         <AddDeviceModal onClose={() => setShowAddDeviceModal(false)} />
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './LoginGuide.module.css';
+import { motion } from 'framer-motion'
 
 function LoginGuide() {
     return (
-        <div>
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+        >
             <div className={styles.layout}>
                 <h1> Logging Into Stay Aware </h1>
                     <p> *** Note: You MUST Create an Account to Add Devices to Stay Aware *** </p>
@@ -17,7 +22,7 @@ function LoginGuide() {
                     <b> Note: </b> You will be re-directed back to the main page, where you will see your account username at the bottom
                 </div>
             </div>
-        </div>
+        </motion.div>
 
     )
 }

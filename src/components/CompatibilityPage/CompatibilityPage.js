@@ -3,6 +3,7 @@ import styles from './CompatibilityPage.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { motion } from 'framer-motion'
 
 function CompatibilityPage() {
   var settings = {
@@ -14,7 +15,11 @@ function CompatibilityPage() {
   };
 
   return (
-    <div className={styles.content}>
+    <motion.div className={styles.content}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      >
       <h1> Compatible Devices: </h1>
       <div className={styles.description}>
       <Slider {...settings}>
@@ -45,7 +50,7 @@ function CompatibilityPage() {
           <h3>Check out the Azure Device Catalog for a Full List of Compatible Devices</h3>
             
         </div>
-    </div>
+    </motion.div>
   );
 }
 

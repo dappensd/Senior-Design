@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { AuthContext } from '../../auth-context';
+import { motion } from 'framer-motion'
 
   function SlideArrows(props) {
     const { className, style, onClick } = props;
@@ -28,7 +29,10 @@ import { AuthContext } from '../../auth-context';
       nextArrow: <SlideArrows />
     };
   return (
-    <div>
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}>
       <div>
         <h1 style={{fontSize: '2em', fontWeight: 'bold', textAlign: 'center'}}>Welcome to Our Website</h1>
         {
@@ -121,7 +125,7 @@ import { AuthContext } from '../../auth-context';
         <h2> Don't Want to Register? Stay Aware Can Still Help! </h2>
         <p style={{textAlign: 'center'}}> If you decide not to register an account, you can still access our updated newsletters on the latest threats to IoT security! Just click on any of the article links provided. </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Box, Typography, Container, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion'
 
 
 const RegistrationPage = () => {
@@ -58,6 +59,11 @@ const RegistrationPage = () => {
   
 
   return (
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+    >
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -138,6 +144,7 @@ const RegistrationPage = () => {
         </Box>
       </Box>
     </Container>
+    </motion.div>
   );
 };
 
