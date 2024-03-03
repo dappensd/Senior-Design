@@ -68,5 +68,3 @@ const RaspberryPiDeviceRegistration = () => {
 };
 
 export default RaspberryPiDeviceRegistration;
-
-

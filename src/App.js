@@ -36,48 +36,28 @@ function App() {
   return (
     <div className={`${styles.App} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
       <NavigationBar />
-      <ParticlesBackground />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/compatibility" element={<CompatibilityPage />} />
-        <Route path="/devices" element={<DeviceDetails />} />
-        <Route path="/select-device" element={<SelectDevice />} />
-        <Route path="/device/:id" element={<DeviceDetails />} />
-        <Route path="/settings" element={<SettingsPanel />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/theme-settings" element={<ThemeSettings />} />
-        <Route path="/documentation" element={<Documentation />} />
-        <Route path="/Navigation" element={<Navigation />} />
-        <Route path="/DeviceManagement" element={<DeviceManagement />} />
-        <Route path="/LoginGuide" element={<LoginGuide />} />
-        <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
-        <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
-        <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
-      </Routes>
-
-      <AnimatePresence mode="wait"> 
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/compatibility" element={<CompatibilityPage />} />
-          <Route path="/devices" element={<DeviceDetails />} />
-          <Route path="/select-device" element={<SelectDevice />} />
-          <Route path="/device/:id" element={<DeviceDetails />} />
-          <Route path="/settings" element={<SettingsPanel />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/theme-settings" element={<ThemeSettings />} />
-          <Route path="/documentation" element={<Documentation />} />
-          <Route path="/Navigation" element={<Navigation />} />
-          <Route path="/DeviceManagement" element={<DeviceManagement />} />
-          <Route path="/LoginGuide" element={<LoginGuide />} />
-          <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
-          <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
-          <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
-        </Routes>
-      </AnimatePresence>
+        <ParticlesBackground />
+          <AnimatePresence mode="wait"> 
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/compatibility" element={<CompatibilityPage />} />
+              <Route path="/devices" element={<DeviceDetails />} />
+              <Route path="/select-device" element={<SelectDevice />} />
+              <Route path="/device/:id" element={<DeviceDetails />} />
+              <Route path="/settings" element={<SettingsPanel />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegistrationPage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/theme-settings" element={<ThemeSettings />} />
+              <Route path="/documentation" element={<Documentation />} />
+              <Route path="/Navigation" element={<Navigation />} />
+              <Route path="/DeviceManagement" element={<DeviceManagement />} />
+              <Route path="/LoginGuide" element={<LoginGuide />} />
+              <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
+              <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
+              <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
+            </Routes>
+          </AnimatePresence>
       <Footer />
     </div>
   );
