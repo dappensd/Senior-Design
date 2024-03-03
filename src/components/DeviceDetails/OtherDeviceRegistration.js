@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './DeviceRegistration.module.css';
+import styles from './OtherDeviceRegistration.module.css';
+import { motion } from 'framer-motion'
 
-const DeviceRegistration = () => {
+const OtherDeviceRegistration = () => {
   const navigate = useNavigate();
   const [device, setDevice] = useState({
     deviceId: '',
@@ -48,7 +49,11 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className={styles.registrationContainer}>
+    <motion.div className={styles.registrationContainer}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+    >
       {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
@@ -58,10 +63,8 @@ const DeviceRegistration = () => {
         {/* ... other form fields ... */}
         <button type="submit" disabled={loading}>Register Device</button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
-export default DeviceRegistration;
-
-
+export default OtherDeviceRegistration;

@@ -8,7 +8,7 @@ const AddDeviceButton = () => {
     
     // Handler for button click
     const handleAddDeviceClick = () => {
-        navigate('/register-device'); // Navigates to the DeviceRegistration page
+        navigate('/select-device'); // Navigates to the DeviceRegistration page; Change this to the new route page where the user will select the device they want to add
     };
 
     return (

@@ -1,0 +1,95 @@
+/* LIFXDeviceRegistration.module.css */
+
+.registrationContainer {
+    max-width: 600px;
+    margin: 80px auto 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .registrationContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .registrationContainer label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .registrationContainer input[type="text"],
+  .registrationContainer input[type="datetime-local"],
+  .registrationContainer select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .formSubmitButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .formSubmitButton:hover {
+    background-color: #0056b3;
+  }
+ 
+/* Container for device type buttons */
+.registrationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Basic button styling */
+.deviceTypeBtn {
+  background-color: #f0f0f0; /* Light grey background */
+  color: #333; /* Dark grey text */
+  border: 2px solid #ccc; /* Light grey border */
+  padding: 10px 20px; /* Top/bottom and left/right padding */
+  font-size: 16px; /* Text size */
+  cursor: pointer; /* Cursor changes to pointer to indicate clickable */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  margin: 5px; /* Spacing between buttons */
+}
+
+/* Styling for the selected button to differentiate it */
+.selected {
+  background-color: #007bff; /* Blue background for selected device */
+  color: #ffffff; /* White text for contrast */
+  border-color: #0056b3; /* Darker blue border to stand out */
+}
+
+/* Hover effect for buttons */
+.deviceTypeBtn:hover {
+  background-color: #e7e7e7; /* Slightly darker grey when hovered */
+}
+
+.deviceTypeBtn:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 2px #0056b3; /* Custom focus indicator */
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  border-color: #aaaaaa;
+  cursor: not-allowed;
+}
+
+
+
+
+  

@@ -6,7 +6,10 @@ import { LayoutContext } from './layoutcontext'; // Import only LayoutContext
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/Home/HomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
-import DeviceRegistration from './components/DeviceDetails/DeviceRegistration';
+import LIFXDeviceRegistration from './components/DeviceDetails/LIFXDeviceRegistration';
+import RaspberryPiDeviceRegistration from './components/DeviceDetails/RaspberryPiDeviceRegistration';
+import OtherDeviceRegistration from './components/DeviceDetails/OtherDeviceRegistration';
+import SelectDevice from './components/DeviceDetails/SelectDevice';
 import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Documentation from './components/Documentation/documentation';
@@ -35,6 +38,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/compatibility" element={<CompatibilityPage />} />
         <Route path="/devices" element={<DeviceDetails />} />
+        <Route path="/select-device" element={<SelectDevice />} />
         <Route path="/device/:id" element={<DeviceDetails />} />
         <Route path="/settings" element={<SettingsPanel />} />
         <Route path="/login" element={<LoginPage />} />
@@ -45,7 +49,10 @@ function App() {
         <Route path="/Navigation" element={<Navigation />} />
         <Route path="/DeviceManagement" element={<DeviceManagement />} />
         <Route path="/LoginGuide" element={<LoginGuide />} />
-        <Route path="/register-device" element={<DeviceRegistration />} />
+        <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
+        <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
+        <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
+
 
       </Routes>
       <Footer />
