@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './components/Home/HomePage';
+import LoggedInHomePage from './components/Home/LoggedInHomePage';
 import DeviceDetails from './components/DeviceDetails/DeviceDetails';
 import LIFXDeviceRegistration from './components/DeviceDetails/LIFXDeviceRegistration';
 import RaspberryPiDeviceRegistration from './components/DeviceDetails/RaspberryPiDeviceRegistration';
@@ -25,6 +26,7 @@ import ParticlesBackground from './components/ParticlesBackground';
 import ThemeSettings from './components/Settings/ThemeSettings';
 import "./App.css"
 
+
 import styles from './App.module.css'; // Ensure this import path is correct
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
           <AnimatePresence mode="wait"> 
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/loggedInHomePage" element={<LoggedInHomePage />} />
               <Route path="/compatibility" element={<CompatibilityPage />} />
               <Route path="/devices" element={<DeviceDetails />} />
               <Route path="/select-device" element={<SelectDevice />} />

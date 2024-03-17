@@ -1,10 +1,11 @@
+//This is for the registration of LIFX devices 
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LIFXDeviceRegistration.module.css';
 
-// Standalone DeviceTypeSelector Component
+// Code for buttons on Device Type
 const DeviceTypeSelector = ({ onDeviceTypeChange, selectedDeviceType }) => {
-  // Device types could be extended or fetched from an API
   const deviceTypes = [
     { id: 'lightbulb', name: 'Lightbulb' },
     { id: 'strip', name: 'Strip' },
@@ -40,11 +41,9 @@ const LIFXDeviceRegistration = () => {
   const navigate = useNavigate();
   const [device, setDevice] = useState({
     deviceId: '',
-    deviceType: '',
-    authtoken: '',
-    // Add other necessary fields as needed
+    authCode: '',
   });
-  const [selectedDeviceType, setSelectedDeviceType] = useState('');
+  const [lifxDeviceType, setLifxDeviceType] = useState(''); // Define a new state variable for lifxDeviceType
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -56,13 +55,9 @@ const LIFXDeviceRegistration = () => {
     }));
   };
 
-  // Update deviceType state on selection
+  // Update lifxDeviceType state on button click
   const handleDeviceTypeChange = (deviceType) => {
-    setDevice((prevDevice) => ({
-      ...prevDevice,
-      deviceType: deviceType,
-    }));
-    setSelectedDeviceType(deviceType);
+    setLifxDeviceType(deviceType); // Update lifxDeviceType with the selected device type
   };
 
   const handleSubmit = async (e) => {
@@ -70,16 +65,20 @@ const LIFXDeviceRegistration = () => {
     setLoading(true);
     setError('');
 
+    const payload = {
+      ...device,
+      lifxDeviceType, // Include lifxDeviceType in the payload
+    };
+
     try {
-      // Assuming your API endpoint and request configuration
       const response = await fetch('http://localhost:3001/devices/register-device', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(device),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
-        navigate('/success'); // Navigate to a success page or display a success message
+        navigate('/LoggedInHomePage');
       } else {
         const errorMsg = await response.text();
         setError(errorMsg || 'Registration failed');
@@ -100,15 +99,15 @@ const LIFXDeviceRegistration = () => {
           Device ID:
           <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
         </label>
-        <label>
+        <label htmlFor="lifxToken">
           Authentication Token:
-          <input type="password" name="authtoken" value={device.authtoken} onChange={handleChange} disabled={loading} />
+            <input type="text" id="lifxToken" name="authCode" value={device.authCode} onChange={handleChange} disabled={loading} />
         </label>
         <div>
           Device Type: 
           <DeviceTypeSelector
             onDeviceTypeChange={handleDeviceTypeChange}
-            selectedDeviceType={selectedDeviceType}
+            selectedDeviceType={lifxDeviceType}
           />
         </div>
         <button type="submit" className={styles.formSubmitButton} disabled={loading}>Register Device</button>

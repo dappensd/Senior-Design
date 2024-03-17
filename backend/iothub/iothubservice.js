@@ -30,6 +30,8 @@ async function sendMessageToDevice(deviceId, message) {
   const device = new iothub.Device(null);
   device.deviceId = deviceId;
   device.deviceInfo = deviceInfo;
+  device.authCode = authCode;
+  device.lifxDeviceType = lifxDeviceType
 
   try {
     const response = await registry.create(device);
@@ -43,7 +45,9 @@ async function sendMessageToDevice(deviceId, message) {
       deviceId: deviceDetails.deviceId,
       generationId: deviceDetails.generationId,
       status: deviceDetails.status,
-      connectionState: deviceDetails.connectionState
+      connectionState: deviceDetails.connectionState,
+      authCode: deviceDetails.authCode,
+      lifxDeviceType: deviceDetails.lifxDeviceType
     };
   } catch (error) {
     console.error(`Error registering device ${deviceId}: ${error.message}`);

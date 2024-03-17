@@ -1,3 +1,5 @@
+//This is for the registration of LIFX devices 
+
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
@@ -70,18 +72,20 @@ router.delete('/devices/:id', async (req, res) => {
 });
 
 router.post('/register-device', async (req, res) => {
-    const { deviceId, deviceInfo } = req.body;
-    console.log('Request to register device:', util.inspect({ deviceId, deviceInfo }, { depth: null }));
+    const { deviceId, deviceInfo, authCode, lifxDeviceType } = req.body;
+    console.log('Request to register device:', util.inspect({ deviceId, deviceInfo, authCode, lifxDeviceType}, { depth: null }));
 
     try {
-        const registrationResult = await registerDevice(deviceId, deviceInfo);
+        const registrationResult = await registerDevice(deviceId, deviceInfo, authCode, lifxDeviceType);
         console.log('Result from registerDevice:', util.inspect(registrationResult, { depth: null }));
 
         const response = {
             deviceId: registrationResult.deviceId,
             generationId: registrationResult.generationId,
             status: registrationResult.status,
-            connectionState: registrationResult.connectionState
+            connectionState: registrationResult.connectionState, 
+            authCode,
+            lifxDeviceType
         };
 
         res.status(201).json(response);
@@ -91,14 +95,18 @@ router.post('/register-device', async (req, res) => {
             id: response.deviceId,
             // other device details we want to store can be added here
             generationId: response.generationId,
+            authCode: authCode,
+            deviceType: lifxDeviceType,
             status: response.status,
             connectionState: response.connectionState,
             // Include deviceInfo if available
-            ...(deviceInfo && { deviceInfo })
+            ...(deviceInfo && { deviceInfo }),
+            
         });
 
         console.log(`Device stored in Cosmos DB:`, util.inspect(createdItem, { depth: null }));
 
+    // We should error check for users who add a device id that
     } catch (error) {
         res.status(500).send('Failed to register device or insert into Cosmos DB');
     }

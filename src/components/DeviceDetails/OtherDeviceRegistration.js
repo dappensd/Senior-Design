@@ -8,9 +8,10 @@ const OtherDeviceRegistration = () => {
   const [device, setDevice] = useState({
     deviceId: '',
     deviceType: '',
-    location: '',
-    // ...other fields...
+    serialNumber: ''
+    
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -35,7 +36,7 @@ const OtherDeviceRegistration = () => {
       });
       
        if (response.ok) {
-        navigate('/'); // Navigate to a success page or display a success message
+        navigate('/loggedInHomePage');
       } else {
         const errorMsg = await response.text();
         setError(errorMsg || 'Registration failed');
@@ -59,8 +60,11 @@ const OtherDeviceRegistration = () => {
         <label>
           Device ID:
           <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
-        </label>
-        {/* ... other form fields ... */}
+          Device Type:
+          <input type ="text" name = "deviceType" value = {device.deviceType} onChange = {handleChange} disabled = {loading} />
+          Serial Number: 
+          <input type="text" name="serialNumber" value={device.serialNumber} onChange={handleChange} disabled={loading} />
+         </label>
         <button type="submit" disabled={loading}>Register Device</button>
       </form>
     </motion.div>

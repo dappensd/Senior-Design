@@ -35,7 +35,7 @@ const RaspberryPiDeviceRegistration = () => {
       });
       
        if (response.ok) {
-        navigate('/'); // Navigate to a success page or display a success message
+        navigate('/LoggedInHomePage'); // Navigate to a success page or display a success message
       } else {
         const errorMsg = await response.text();
         setError(errorMsg || 'Registration failed');
