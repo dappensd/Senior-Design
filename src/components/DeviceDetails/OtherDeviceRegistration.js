@@ -7,8 +7,10 @@ const OtherDeviceRegistration = () => {
   const navigate = useNavigate();
   const [device, setDevice] = useState({
     deviceId: '',
-    deviceType: '',
-    serialNumber: ''
+    deviceType: 'otherdevice',
+    deviceSpecificData: {
+      serialNumber: ''
+    }
     
   });
 
@@ -17,10 +19,21 @@ const OtherDeviceRegistration = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDevice(prevDevice => ({
-      ...prevDevice,
-      [name]: value,
-    }));
+    // Update to handle changes within deviceSpecificData
+    if (name === "serialNumber") {
+      setDevice(prevDevice => ({
+        ...prevDevice,
+        deviceSpecificData: {
+          ...prevDevice.deviceSpecificData,
+          [name]: value
+        }
+      }));
+    } else {
+      setDevice(prevDevice => ({
+        ...prevDevice,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -32,7 +45,11 @@ const OtherDeviceRegistration = () => {
       const response = await fetch('http://localhost:3001/devices/register-device', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(device),
+        body: JSON.stringify({
+          deviceId: device.deviceId,
+          deviceType: device.deviceType,
+          deviceSpecificData: device.deviceSpecificData
+        }),
       });
       
        if (response.ok) {
@@ -60,10 +77,11 @@ const OtherDeviceRegistration = () => {
         <label>
           Device ID:
           <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
-          Device Type:
-          <input type ="text" name = "deviceType" value = {device.deviceType} onChange = {handleChange} disabled = {loading} />
+        </label>
+
+        <label>
           Serial Number: 
-          <input type="text" name="serialNumber" value={device.serialNumber} onChange={handleChange} disabled={loading} />
+          <input type="text" name="serialNumber" value={device.deviceSpecificData.serialNumber} onChange={handleChange} disabled={loading} />
          </label>
         <button type="submit" disabled={loading}>Register Device</button>
       </form>

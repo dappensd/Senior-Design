@@ -7,31 +7,52 @@ const RaspberryPiDeviceRegistration = () => {
   const navigate = useNavigate();
   const [device, setDevice] = useState({
     deviceId: '',
-    deviceType: '',
-    location: '',
-    // ...other fields...
+    deviceType: 'raspberrypi',
+    serialNumber: '',
+    deviceSpecificData: {
+      raspberryPiModel: ''
+    }
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDevice(prevDevice => ({
-      ...prevDevice,
-      [name]: value,
-    }));
-  };
+    // Special handling for deviceSpecificData variable
+    if (name === "raspberryPiModel") {
+      setDevice(prevDevice => ({
+        ...prevDevice,
+        deviceSpecificData: {
+          ...prevDevice.deviceSpecificData,
+          [name]: value
+        }
+      }));
 
+    } else {
+        setDevice(prevDevice => ({
+          ...prevDevice,
+          [name]: value,
+        }));
+      }
+  };
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
+    const payload = {
+      deviceId: device.deviceId,
+      deviceType: device.deviceType,
+      deviceSpecificData: device.deviceSpecificData
+    };
+
     try {
       const response = await fetch('http://localhost:3001/devices/register-device', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(device),
+        body: JSON.stringify(payload),
       });
       
        if (response.ok) {
@@ -60,7 +81,12 @@ const RaspberryPiDeviceRegistration = () => {
           Device ID:
           <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
         </label>
-        {/* ... other form fields ... */}
+
+        <label>
+          RaspberryPi Device Model:
+            <input type="text" name="raspberryPiModel" value={device.deviceSpecificData.raspberryPiModel} onChange={handleChange} disabled={loading} />
+        </label>
+
         <button type="submit" disabled={loading}>Register Device</button>
       </form>
     </motion.div>

@@ -26,12 +26,9 @@ async function sendMessageToDevice(deviceId, message) {
 
  // Function to register a device with the IoT hub.
 
- async function registerDevice(deviceId, deviceInfo) {
+ async function registerDevice(deviceId, deviceType, deviceSpecificData ) {
   const device = new iothub.Device(null);
-  device.deviceId = deviceId;
-  device.deviceInfo = deviceInfo;
-  device.authCode = authCode;
-  device.lifxDeviceType = lifxDeviceType
+  device.deviceId = deviceId
 
   try {
     const response = await registry.create(device);
@@ -43,11 +40,11 @@ async function sendMessageToDevice(deviceId, message) {
     // Filters the response object
     return {
       deviceId: deviceDetails.deviceId,
+      deviceType,
+      deviceSpecificData,
       generationId: deviceDetails.generationId,
       status: deviceDetails.status,
       connectionState: deviceDetails.connectionState,
-      authCode: deviceDetails.authCode,
-      lifxDeviceType: deviceDetails.lifxDeviceType
     };
   } catch (error) {
     console.error(`Error registering device ${deviceId}: ${error.message}`);

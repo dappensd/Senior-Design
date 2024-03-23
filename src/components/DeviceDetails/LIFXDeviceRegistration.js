@@ -1,10 +1,7 @@
-//This is for the registration of LIFX devices 
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LIFXDeviceRegistration.module.css';
 
-// Code for buttons on Device Type
 const DeviceTypeSelector = ({ onDeviceTypeChange, selectedDeviceType }) => {
   const deviceTypes = [
     { id: 'lightbulb', name: 'Lightbulb' },
@@ -16,7 +13,6 @@ const DeviceTypeSelector = ({ onDeviceTypeChange, selectedDeviceType }) => {
     { id: 'switch', name: 'Switch' }
   ];
 
-  // This handles the button click
   const handleDeviceTypeClick = (deviceType) => {
     onDeviceTypeChange(deviceType);
   };
@@ -43,21 +39,20 @@ const LIFXDeviceRegistration = () => {
     deviceId: '',
     authCode: '',
   });
-  const [lifxDeviceType, setLifxDeviceType] = useState(''); // Define a new state variable for lifxDeviceType
+  const [lifxDeviceType, setLifxDeviceType] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDevice((prevDevice) => ({
+    setDevice(prevDevice => ({
       ...prevDevice,
       [name]: value,
     }));
   };
 
-  // Update lifxDeviceType state on button click
   const handleDeviceTypeChange = (deviceType) => {
-    setLifxDeviceType(deviceType); // Update lifxDeviceType with the selected device type
+    setLifxDeviceType(deviceType);
   };
 
   const handleSubmit = async (e) => {
@@ -66,8 +61,12 @@ const LIFXDeviceRegistration = () => {
     setError('');
 
     const payload = {
-      ...device,
-      lifxDeviceType, // Include lifxDeviceType in the payload
+      deviceId: device.deviceId,
+      deviceType: 'lifx',
+      deviceSpecificData: {
+        authCode: device.authCode,
+        lifxDeviceType,
+      },
     };
 
     try {

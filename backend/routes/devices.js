@@ -72,41 +72,38 @@ router.delete('/devices/:id', async (req, res) => {
 });
 
 router.post('/register-device', async (req, res) => {
-    const { deviceId, deviceInfo, authCode, lifxDeviceType } = req.body;
-    console.log('Request to register device:', util.inspect({ deviceId, deviceInfo, authCode, lifxDeviceType}, { depth: null }));
+    const { deviceId, deviceType, deviceSpecificData } = req.body;
+    console.log('Request to register device:', util.inspect({ deviceId, deviceType, deviceSpecificData}, { depth: null }));
 
     try {
-        const registrationResult = await registerDevice(deviceId, deviceInfo, authCode, lifxDeviceType);
+        const registrationResult = await registerDevice(deviceId, deviceType, deviceSpecificData);
         console.log('Result from registerDevice:', util.inspect(registrationResult, { depth: null }));
 
         const response = {
             deviceId: registrationResult.deviceId,
+            deviceType,
+            deviceSpecificData,
             generationId: registrationResult.generationId,
             status: registrationResult.status,
             connectionState: registrationResult.connectionState, 
-            authCode,
-            lifxDeviceType
         };
 
         res.status(201).json(response);
 
         // Insert the registered device into Cosmos DB
         const { resource: createdItem } = await container2.items.create({
-            id: response.deviceId,
-            // other device details we want to store can be added here
+            deviceId: response.deviceId,
+            deviceType,
+            deviceSpecificData,
             generationId: response.generationId,
-            authCode: authCode,
-            deviceType: lifxDeviceType,
             status: response.status,
-            connectionState: response.connectionState,
-            // Include deviceInfo if available
-            ...(deviceInfo && { deviceInfo }),
+            connectionState: response.connectionState
             
         });
 
         console.log(`Device stored in Cosmos DB:`, util.inspect(createdItem, { depth: null }));
 
-    // We should error check for users who add a device id that
+    // We should error check for users who add a device id that has already been added to IoT Hub
     } catch (error) {
         res.status(500).send('Failed to register device or insert into Cosmos DB');
     }
