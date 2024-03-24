@@ -46,9 +46,6 @@ function NavigationBar() {
             <li className={styles.navItem}>
               <Link to="/documentation" className={styles.navLink}><FaBook className={styles.navIcon} /> Documentation</Link>
             </li>
-            <li className={styles.navItem}>
-              <Link to="/settings" className={styles.navLink}><DiAptana className={styles.navIcon} /> Settings</Link>
-            </li>
             {isLoggedIn ? (
               <li className={styles.navItem}>
                 <button onClick={logout} className={styles.navLink}><FaSignOutAlt className={styles.navIcon} /> Log Out</button>
