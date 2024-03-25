@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RaspberryPiDeviceRegistration.module.css';
 import { motion } from 'framer-motion';
+import { FaSpinner, FaCheck } from 'react-icons/fa';
 
 const RaspberryPiDeviceRegistration = () => {
   const navigate = useNavigate();
@@ -15,11 +16,11 @@ const RaspberryPiDeviceRegistration = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [registrationComplete, setRegistrationComplete] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Special handling for deviceSpecificData variable
     if (name === "raspberryPiModel") {
       setDevice(prevDevice => ({
         ...prevDevice,
@@ -28,38 +29,39 @@ const RaspberryPiDeviceRegistration = () => {
           [name]: value
         }
       }));
-
     } else {
-        setDevice(prevDevice => ({
-          ...prevDevice,
-          [name]: value,
-        }));
-      }
+      setDevice(prevDevice => ({
+        ...prevDevice,
+        [name]: value,
+      }));
+    }
   };
-    
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    const payload = {
-      deviceId: device.deviceId,
-      deviceType: device.deviceType,
-      deviceSpecificData: device.deviceSpecificData
-    };
-
     try {
       const response = await fetch('http://localhost:3001/devices/register-device', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          deviceId: device.deviceId,
+          deviceType: device.deviceType,
+          deviceSpecificData: device.deviceSpecificData
+        }),
       });
       
-       if (response.ok) {
-        navigate('/LoggedInHomePage'); // Navigate to a success page or display a success message
+      const responseData = await response.json();
+
+      if (response.ok) {
+        setRegistrationComplete(true);
+        setTimeout(() => {
+          navigate('/'); // Navigate to home page after a delay
+        }, 2000); // 2 seconds for user to view the message
       } else {
-        const errorMsg = await response.text();
-        setError(errorMsg || 'Registration failed');
+        setError(responseData.message || 'Registration failed');
       }
     } catch (error) {
       setError('Network error: Could not connect to server');
@@ -76,19 +78,28 @@ const RaspberryPiDeviceRegistration = () => {
       exit={{opacity: 0}}
     >
       {error && <p className={styles.error}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Device ID:
-          <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
-        </label>
 
-        <label>
-          RaspberryPi Device Model:
+      {!registrationComplete && (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Device ID:
+            <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
+          </label>
+          <label>
+            RaspberryPi Device Model:
             <input type="text" name="raspberryPiModel" value={device.deviceSpecificData.raspberryPiModel} onChange={handleChange} disabled={loading} />
-        </label>
+          </label>
+          <button type="submit" disabled={loading}>Register Device</button>
+        </form>
+      )}
 
-        <button type="submit" disabled={loading}>Register Device</button>
-      </form>
+      {loading && <p className={styles.loadingText}>Registering Device <FaSpinner className={styles.loadingIcon} /></p>}
+
+      {registrationComplete && !loading && (
+        <p className={styles.registrationCompleteText}>
+          Device Registered <FaCheck className={styles.checkIcon} />
+        </p>
+      )}
     </motion.div>
   );
 };

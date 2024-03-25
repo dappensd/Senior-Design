@@ -34,12 +34,7 @@ import { motion } from 'framer-motion'
       animate={{opacity: 1}}
       exit={{opacity: 0}}>
       <div>
-        <h1 style={{fontSize: '2em', fontWeight: 'bold', textAlign: 'center'}}>Welcome to Our Website</h1>
-        {
-           user
-           ? <p>Welcome back, {user.username}!</p>
-           : <p>Please <a href="/login">log in</a> or <a href="/register">register</a>.</p>
-        }
+        <h1 style={{fontSize: '2em', fontWeight: 'bold', textAlign: 'center'}}>Welcome to StayAware</h1>
 
       </div>
       <div className={styles.description}>

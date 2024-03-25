@@ -43,4 +43,27 @@
   .registrationContainer button:hover {
     background-color: #0056b3;
   }
-  
+
+.loadingText,
+.registrationCompleteText {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.loadingIcon {
+  margin: 10px auto;
+  display: block;
+  animation: spin 1s linear infinite; /* Apply the spin animation only to loadingIcon */
+}
+
+.checkIcon {
+  margin: 10px auto;
+  display: block;
+  color: green;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

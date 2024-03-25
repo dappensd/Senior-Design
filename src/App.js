@@ -57,7 +57,7 @@ function App() {
               <Route path="/DeviceManagement" element={<DeviceManagement />} />
               <Route path="/LoginGuide" element={<LoginGuide />} />
               <Route path="/Register-LIFX" element={<LIFXDeviceRegistration />} />
-              <Route path="/Register-RasberryPi" element={<RaspberryPiDeviceRegistration />} />
+              <Route path="/Register-RaspberryPi" element={<RaspberryPiDeviceRegistration />} />
               <Route path="/Register-Other-Device" element={<OtherDeviceRegistration />} />
             </Routes>
           </AnimatePresence>

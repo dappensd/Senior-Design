@@ -90,7 +90,7 @@ router.post('/register-device', async (req, res) => {
 
         // Insert the registered device into Cosmos DB
         const { resource: createdItem } = await container2.items.create({
-            deviceId: response.deviceId,
+            id: deviceId,
             deviceType,
             deviceSpecificData,
             generationId: response.generationId,

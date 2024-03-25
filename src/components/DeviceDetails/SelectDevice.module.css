@@ -1,6 +1,75 @@
 .content {
-    h1 {
-        text-align: center;
-        
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333; /* Sets the color of the text to a dark grey for better readability */
+    background-color: #eef2f7; /* Optional: Sets a light background color */
+  }
+  
+  .labelDevice {
+    font-size: 1.2rem; /* Larger font size for the label */
+    font-weight: bold; /* Make the label text bold */
+    margin-bottom: 0.5rem; /* Adds space below the label */
+    color: #007bff; /* Sets the label color to match the button */
+    margin-right: 0.5rem;
+  }
+  
+  .selectDevice {
+    margin-bottom: 1.5rem; /* Increased space below the select */
+    padding: 0.5rem 1rem; /* Pads the select for better touch target */
+    width: 50%;
+    max-width: 300px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the select */
+    background-color: white; /* Ensures the select is white */
+  }
+  
+  .submitButton {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    .selectDevice {
+      width: 100%;
     }
-}
+  }
+
+  .downloadLinks {
+    margin-top: 20px; /* Adds space between the form and download links */
+    text-align: center; /* Centers the download links text */
+  }
+  
+  .downloadLink {
+    display: inline-block; /* Allows margin, padding, and width/height to be set */
+    margin: 5px; /* Adds space around the links */
+    padding: 10px 15px; /* Pads the inside of the links */
+    border-radius: 5px; /* Rounds the corners of the links */
+    background-color: #007bff; /* Sets the background color to blue */
+    color: white; /* Sets the text color to white */
+    text-decoration: none; /* Removes the underline from the links */
+    transition: background-color 0.3s; /* Adds a transition for the background color */
+  }
+  
+  .downloadLink:hover {
+    background-color: #0056b3; /* Darkens the button when hovered */
+  }
+  
+  
