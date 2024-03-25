@@ -88,8 +88,6 @@ router.post('/register-device', async (req, res) => {
             connectionState: registrationResult.connectionState, 
         };
 
-        res.status(201).json(response);
-
         // Insert the registered device into Cosmos DB
         const { resource: createdItem } = await container2.items.create({
             deviceId: response.deviceId,
@@ -103,9 +101,18 @@ router.post('/register-device', async (req, res) => {
 
         console.log(`Device stored in Cosmos DB:`, util.inspect(createdItem, { depth: null }));
 
-    // We should error check for users who add a device id that has already been added to IoT Hub
+        // Send the response after all operations are successful
+        res.status(201).json(response);
+
     } catch (error) {
-        res.status(500).send('Failed to register device or insert into Cosmos DB');
+        console.error('Error registering device or inserting into Cosmos DB:', error);
+        // Check if headers have already been sent
+        if (!res.headersSent) {
+            res.status(500).send('Failed to register device or insert into Cosmos DB');
+        } else {
+            // Headers have been sent, cannot send another response
+            console.error('Response already sent.');
+        }
     }
 });
 
