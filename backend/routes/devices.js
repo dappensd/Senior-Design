@@ -78,7 +78,7 @@ router.post('/register-device', async (req, res) => {
     try {
         const registrationResult = await registerDevice(deviceId, deviceType, deviceSpecificData);
         console.log('Result from registerDevice:', util.inspect(registrationResult, { depth: null }));
-
+  
         const response = {
             deviceId: registrationResult.deviceId,
             deviceType,
@@ -108,6 +108,7 @@ router.post('/register-device', async (req, res) => {
         res.status(500).send('Failed to register device or insert into Cosmos DB');
     }
 });
+
 
 module.exports = router;
 

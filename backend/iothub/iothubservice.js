@@ -31,11 +31,9 @@ async function sendMessageToDevice(deviceId, message) {
   device.deviceId = deviceId
 
   try {
-    const response = await registry.create(device);
-
-    // Accessing the properties from responseBody
-    const deviceDetails = response.responseBody;
-    console.log(`Device registered with IoT Hub: ${deviceDetails.deviceId}`);
+      const response = await registry.create(device);
+      const deviceDetails = response.responseBody;
+      console.log(`Device registered with IoT Hub: ${util.inspect(deviceDetails, { depth: null })}`);
 
     // Filters the response object
     return {
@@ -47,10 +45,11 @@ async function sendMessageToDevice(deviceId, message) {
       connectionState: deviceDetails.connectionState,
     };
   } catch (error) {
-    console.error(`Error registering device ${deviceId}: ${error.message}`);
-    throw new Error('Failed to register device.');
+      console.error(`Error registering device ${deviceId}: ${util.inspect(error, { depth: null })}`);
+      throw new Error('Failed to register device. See logs for more details.');
   }
 }
+
 
 module.exports = { sendMessageToDevice, registerDevice };
 
