@@ -1,96 +1,129 @@
 // DeviceDetails.js
 import React, { useState, useEffect } from 'react';
 import styles from './DeviceDetails.module.css';
-import AddDeviceButton from './AddDeviceButton/AddDeviceButton'; 
+import AddDeviceButton from './AddDeviceButton/AddDeviceButton';
 import DeviceTable from './DeviceTable/DeviceTable';
 import SearchBar from './SearchBar/SearchBar';
 import TabNavigation from './TabNavigation/TabNavigation';
 import FilterSort from './FilterSort/FilterSort';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import axios from 'axios';
 
+// Placeholder for AddDeviceModal
+const AddDeviceModal = ({ onClose }) => {
+  // Implement your modal logic here
+  // Replace with your actual modal component
+  return null;
+};
 
+// Placeholder for EditDeviceModal
+const EditDeviceModal = ({ device, onClose }) => {
+  // Implement your modal logic here
+  // Replace with your actual modal component
+  return null;
+};
+
+// Placeholder for ViewDeviceDetailsModal
+const ViewDeviceDetailsModal = ({ device, onClose }) => {
+  // Implement your modal logic here
+  // Replace with your actual modal component
+  return null;
+};
 
 const DeviceDetails = () => {
+  const [originalDevices, setOriginalDevices] = useState([]);
   const [devices, setDevices] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
   const [sort, setSort] = useState('Name');
-  const [showAddDeviceModal, setShowAddDeviceModal] = useState(false); // State to control the visibility of the add device modal
+  const [showAddDeviceModal, setShowAddDeviceModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingDevice, setEditingDevice] = useState(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [viewingDevice, setViewingDevice] = useState(null);
   const [activeTab, setActiveTab] = useState('All Devices');
 
   useEffect(() => {
-// Function to fetch devices
-const fetchDevices = async () => {
-  try {
-    const response = await axios.get('http://localhost:3001/devices/devices');
-    setDevices(response.data);
-    console.log(devices);
-  } catch (error) {
-    console.error('Error fetching devices:', error); 
-    // Handle error appropriately
-  }
-};
+    const fetchDevices = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/devices/devices');
+        setDevices(response.data);
+        setOriginalDevices(response.data);
+      } catch (error) {
+        console.error('Error fetching devices:', error);
+      }
+    };
 
-fetchDevices();
-}, []); 
+    fetchDevices();
+  }, []);
 
   // Handlers for search, filter, and sort changes
   const handleSearchChange = (value) => {
     setSearchTerm(value);
-    // Implement the logic to handle search term change
+    const filteredDevices = originalDevices.filter(device =>
+      device.deviceId.toLowerCase().includes(value.toLowerCase()) ||
+      device.deviceType.toLowerCase().includes(value.toLowerCase())
+    );
+    setDevices(filteredDevices);
   };
 
   const handleFilterChange = (value) => {
     setFilter(value);
-    // Implement the logic to handle filter change
+    if (value === 'All') {
+      setDevices(originalDevices);
+    } else {
+      const filteredDevices = originalDevices.filter(device => device.deviceType === value);
+      setDevices(filteredDevices);
+    }
   };
 
   const handleSortChange = (value) => {
     setSort(value);
-    // Implement the logic to handle sort change
+    const sortedDevices = [...devices].sort((a, b) => {
+      if (value === 'Name') {
+        return a.deviceId.localeCompare(b.deviceId);
+      } else if (value === 'Status') {
+        return a.status.localeCompare(b.status);
+      }
+      return 0;
+    });
+    setDevices(sortedDevices);
   };
 
-  // Handler to be called when the add device button is clicked
   const handleAddDeviceClick = () => {
-    // Here we can set the state to true to show the modal or form
     setShowAddDeviceModal(true);
   };
 
-  const AddDeviceModal = () => {
-    // Placeholder for AddDeviceModal
-    // Implement your modal logic here
-    return null; // Return null or actual modal component
+  const handleEditDevice = (device) => {
+    setEditingDevice(device);
+    setShowEditModal(true);
   };
 
-  const handleEditDevice = (device) => {
-    // We could set the state here to show a modal or form for editing
-    // and pass the selected device's details to the form
-    console.log('Editing device:', device);
-    // For example: setShowEditModal(true); setEditingDevice(device);
-  };
-   
   const handleViewDeviceDetails = (device) => {
-    // We can handle the logic to view details here
-    // Maybe open a modal with the device's details
-    console.log('Viewing details for device:', device);
-    // For example: setShowDetailsModal(true); setViewingDevice(device);
+    setViewingDevice(device);
+    setShowDetailsModal(true);
   };
+
+  const handleDeleteDevice = async (deviceId, partitionKeyValue) => {
+    if (window.confirm(`Are you sure you want to delete this device?`)) {
+        try {
+            // Send the partition key value along with the request
+            const response = await axios.delete(`http://localhost:3001/devices/devices/${deviceId}`, {
+                data: { partitionKey: partitionKeyValue } // send partition key in the request body
+            });
+        console.log('Device deleted:', response.data);
   
-  const handleDeleteDevice = (device) => {
-    // Confirm before deleting
-    if (window.confirm(`Are you sure you want to delete ${device.name}?`)) {
-      console.log('Deleting device:', device);
-      // Here we could  make an API call to delete the device
-      // Then, we would update your state to remove the device from the list
-      // For example:
-      // deleteDeviceApi(device.id).then(() => {
-      //   setDevices(devices.filter(d => d.id !== device.id));
-      // });
+        // Remove the deleted device from the state
+        const updatedDevices = devices.filter(device => device.id !== deviceId);
+        setDevices(updatedDevices);
+        setOriginalDevices(updatedDevices); // If you are using originalDevices
+      } catch (error) {
+        console.error('Error deleting device:', error);
+      }
     }
   };
-  
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
     // Additional logic to filter devices based on the selected tab
@@ -107,23 +140,22 @@ fetchDevices();
         <SearchBar value={searchTerm} onChange={handleSearchChange} />
         <FilterSort filter={filter} onFilterChange={handleFilterChange} sort={sort} onSortChange={handleSortChange} />
       </div>
-      <DeviceTable 
-       devices={devices} 
-       onEdit={handleEditDevice}
-       onViewDetails={handleViewDeviceDetails}
-       onDelete={handleDeleteDevice}
+      <DeviceTable
+        devices={devices}
+        onEdit={handleEditDevice}
+        onViewDetails={handleViewDeviceDetails}
+        onDelete={handleDeleteDevice}
       />
       {isLoggedIn && <AddDeviceButton onAddDevice={handleAddDeviceClick} />}
-    
-      {showAddDeviceModal && (
-        // Here we would include our modal or form component for adding a device
-        <AddDeviceModal onClose={() => setShowAddDeviceModal(false)} />
-      )}
+      {showAddDeviceModal && <AddDeviceModal onClose={() => setShowAddDeviceModal(false)} />}
+      {showEditModal && <EditDeviceModal device={editingDevice} onClose={() => setShowEditModal(false)} />}
+      {showDetailsModal && <ViewDeviceDetailsModal device={viewingDevice} onClose={() => setShowDetailsModal(false)} />}
     </motion.div>
   );
 };
 
 export default DeviceDetails;
+
 
 
 

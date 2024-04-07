@@ -13,7 +13,7 @@ const DeviceRow = ({ device, onEdit, onViewDetails, onDelete }) => {
       <td>
         <button className={styles.viewButton} onClick={() => onViewDetails(device)}>View</button>
         <button className={styles.editButton} onClick={() => onEdit(device)}>Edit</button>
-        <button className={styles.deleteButton} onClick={() => onDelete(device)}>Delete</button>
+        <button className={styles.deleteButton} onClick={() => onDelete(device.id, device.partitionKey)}>Delete</button>
       </td>
     </tr>
   );

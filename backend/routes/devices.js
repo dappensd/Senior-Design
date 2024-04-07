@@ -19,6 +19,7 @@ router.get('/devices', async (req, res) => {
         const { resources: devices } = await container2.items
             .query('SELECT * from c')
             .fetchAll();
+        console.log("Device IDs from Cosmos DB:", devices.map(d => d.id));
         res.json(devices);
     } catch (error) {
         res.status(500).send(error.message);
@@ -61,15 +62,27 @@ router.put('/devices/:id', async (req, res) => {
     }
 });
 
+router.use('/devices/:id', (req, res, next) => {
+    console.log(`Incoming request for device with ID: ${req.params.id}`);
+    next();
+  });
+
 // Delete a device
 router.delete('/devices/:id', async (req, res) => {
     try {
-        await container2.item(req.params.id).delete();
-        res.send('Device deleted');
+        const deviceId = req.params.id;
+        const partitionKeyValue = req.body.partitionKey || req.query.partitionKey; // Assuming you send it in the body or as a query
+        console.log(`Attempting to delete device with ID: ${deviceId} and partition key: ${partitionKeyValue}`);
+
+        const result = await container2.item(deviceId, partitionKeyValue).delete();
+        console.log("Delete result:", result);
+        res.status(200).send('Device deleted');
     } catch (error) {
+        console.error("Error during deletion:", error);
         res.status(500).send(error.message);
     }
 });
+
 
 router.post('/register-device', async (req, res) => {
     const { deviceId, deviceType, deviceSpecificData } = req.body;
