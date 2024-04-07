@@ -26,16 +26,21 @@ async function sendMessageToDevice(deviceId, message) {
 
  // Function to register a device with the IoT hub.
 
- async function registerDevice(deviceId, deviceType, deviceSpecificData ) {
+ async function registerDevice(deviceId, deviceType, deviceSpecificData) {
   const device = new iothub.Device(null);
-  device.deviceId = deviceId
+  device.deviceId = deviceId;
+
+  // Log the incoming parameters for debugging
+  console.log(`Attempting to register device. ID: ${deviceId}, Type: ${deviceType}, Specific Data: ${JSON.stringify(deviceSpecificData)}`);
 
   try {
-      const response = await registry.create(device);
-      const deviceDetails = response.responseBody;
-      console.log(`Device registered with IoT Hub: ${util.inspect(deviceDetails, { depth: null })}`);
+    const response = await registry.create(device);
+    const deviceDetails = response.responseBody;
 
-    // Filters the response object
+    // Log the detailed response from IoT Hub
+    console.log(`Device registered with IoT Hub: ${util.inspect(deviceDetails, { depth: null })}`);
+
+    // Filters the response object to return essential details
     return {
       deviceId: deviceDetails.deviceId,
       deviceType,
@@ -45,8 +50,9 @@ async function sendMessageToDevice(deviceId, message) {
       connectionState: deviceDetails.connectionState,
     };
   } catch (error) {
-      console.error(`Error registering device ${deviceId}: ${util.inspect(error, { depth: null })}`);
-      throw new Error('Failed to register device. See logs for more details.');
+    // Log the detailed error in case of failure
+    console.error(`Error registering device ${deviceId}: ${util.inspect(error, { depth: null })}`);
+    throw new Error('Failed to register device. See logs for more details.');
   }
 }
 

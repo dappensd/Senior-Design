@@ -7,6 +7,7 @@ import SearchBar from './SearchBar/SearchBar';
 import TabNavigation from './TabNavigation/TabNavigation';
 import FilterSort from './FilterSort/FilterSort';
 import { motion } from 'framer-motion'
+import axios from 'axios';
 
 
 
@@ -20,11 +21,20 @@ const DeviceDetails = () => {
   const [activeTab, setActiveTab] = useState('All Devices');
 
   useEffect(() => {
-    // Fetch devices from backend or Azure 
-    // This is where we would make an API call to fetch devices
-    // Example: axios.get('/api/devices').then(response => setDevices(response.data));
-    setDevices([]); // Placeholder for fetched devices
-  }, []);
+// Function to fetch devices
+const fetchDevices = async () => {
+  try {
+    const response = await axios.get('http://localhost:3001/devices/devices');
+    setDevices(response.data);
+    console.log(devices);
+  } catch (error) {
+    console.error('Error fetching devices:', error); 
+    // Handle error appropriately
+  }
+};
+
+fetchDevices();
+}, []); 
 
   // Handlers for search, filter, and sort changes
   const handleSearchChange = (value) => {

@@ -3,12 +3,13 @@ import React from 'react';
 import styles from './DeviceRow.module.css';
 
 const DeviceRow = ({ device, onEdit, onViewDetails, onDelete }) => {
+  // Adjust to reflect the structure of the device object
   return (
     <tr className={styles.deviceRow}>
-      <td>{device.name}</td>
-      <td>{device.location}</td>
+      <td>{device.id}</td> {/* Changed from device.deviceId to device.id */}
+      <td>{device.deviceType}</td> {/* Assuming you want to display the type */}
       <td>{device.status}</td>
-      <td>{device.lastActive}</td>
+      <td>{device.connectionState}</td>
       <td>
         <button className={styles.viewButton} onClick={() => onViewDetails(device)}>View</button>
         <button className={styles.editButton} onClick={() => onEdit(device)}>Edit</button>
@@ -19,3 +20,4 @@ const DeviceRow = ({ device, onEdit, onViewDetails, onDelete }) => {
 };
 
 export default DeviceRow;
+
