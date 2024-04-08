@@ -37,17 +37,17 @@ function NavigationBar() {
             <li className={styles.navItem}>
               <Link to="/compatibility" className={styles.navLink}><RiCheckboxMultipleLine className={styles.navIcon} /> Compatibility</Link>
             </li>
-            <li className={styles.navItem}>
+            {isLoggedIn && (
+              <li className={styles.navItem}>
               <Link to="/devices" className={styles.navLink}><FaTabletAlt className={styles.navIcon} /> Devices</Link>
             </li>
+            )
+            }
             <li className={styles.navItem}>
               <Link to="/about" className={styles.navLink}><FaInfo className={styles.navIcon} /> About</Link>
             </li>
             <li className={styles.navItem}>
               <Link to="/documentation" className={styles.navLink}><FaBook className={styles.navIcon} /> Documentation</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/settings" className={styles.navLink}><DiAptana className={styles.navIcon} /> Settings</Link>
             </li>
             {isLoggedIn ? (
               <li className={styles.navItem}>

@@ -46,7 +46,7 @@ function CompatibilityPage() {
         
         
         <div className={styles.subcontent}>
-          <a href= 'https://devicecatalog.azure.com/featured' target="_blank" rel="noopener noreferrer" style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center', textDecoration: 'underline'}}> Azure Compatibility Catalog </a>
+          <a href= 'https://learn.microsoft.com/en-us/azure/iot/concepts-iot-device-selection' target="_blank" rel="noopener noreferrer" style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center', textDecoration: 'underline'}}> Azure Compatibility Catalog </a>
           <h3>Check out the Azure Device Catalog for a Full List of Compatible Devices</h3>
             
         </div>

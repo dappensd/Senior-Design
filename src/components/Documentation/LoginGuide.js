@@ -13,7 +13,7 @@ function LoginGuide() {
                 <h1> Logging Into Stay Aware </h1>
                     <p> *** Note: You MUST Create an Account to Add Devices to Stay Aware *** </p>
                 <div className={styles.content}>
-                    <h2> To create a Stay Aware account, follow these steps:</h2>
+                    <h2> Create a Stay Aware Account: </h2>
                     <ol>
                         <li> Click the Log In in the menu section </li>
                         <li> Click the "Sign Up" text </li>

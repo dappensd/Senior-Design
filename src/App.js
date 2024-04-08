@@ -12,7 +12,6 @@ import LIFXDeviceRegistration from './components/DeviceDetails/LIFXDeviceRegistr
 import RaspberryPiDeviceRegistration from './components/DeviceDetails/RaspberryPiDeviceRegistration';
 import OtherDeviceRegistration from './components/DeviceDetails/OtherDeviceRegistration';
 import SelectDevice from './components/DeviceDetails/SelectDevice';
-import SettingsPanel from './components/Settings/SettingsPanel';
 import LoginPage from './components/LoginPage/LoginPage';
 import Documentation from './components/Documentation/documentation';
 import Navigation from './components/Documentation/Navigation';
@@ -23,7 +22,6 @@ import CompatibilityPage from './components/CompatibilityPage/CompatibilityPage'
 import About from './components/About/About';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import ParticlesBackground from './components/ParticlesBackground';
-import ThemeSettings from './components/Settings/ThemeSettings';
 import "./App.css"
 
 
@@ -47,11 +45,9 @@ function App() {
               <Route path="/devices" element={<DeviceDetails />} />
               <Route path="/select-device" element={<SelectDevice />} />
               <Route path="/device/:id" element={<DeviceDetails />} />
-              <Route path="/settings" element={<SettingsPanel />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegistrationPage />} />
               <Route path="/about" element={<About />} />
-              <Route path="/theme-settings" element={<ThemeSettings />} />
               <Route path="/documentation" element={<Documentation />} />
               <Route path="/Navigation" element={<Navigation />} />
               <Route path="/DeviceManagement" element={<DeviceManagement />} />

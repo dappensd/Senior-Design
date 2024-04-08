@@ -6,3 +6,12 @@
         text-align: center; 
     }
     }
+
+.content {
+    border: 2px solid #333;
+    color:black;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+}

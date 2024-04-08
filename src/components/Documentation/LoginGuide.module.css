@@ -12,8 +12,14 @@
 }
 
 .content {
+    border: 2px solid #333;
+    color:black;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
     h2 {
-        text-align: left;
+        text-align: center;
     }
 
     text-align: left;
