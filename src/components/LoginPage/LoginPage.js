@@ -1,7 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth-context';
-import { TextField, Button, Container, Typography, Box, Link } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, Link, CircularProgress } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { green } from '@mui/material/colors';
 import { generateCodeVerifier, generateCodeChallenge } from './pkce';
 import { motion } from 'framer-motion'
 
@@ -9,7 +11,23 @@ const LoginPage = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const auth = useContext(AuthContext);
+
+  const [loading, setLoading] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
+
   const navigate = useNavigate();
+
+  // Declare timeoutId outside of the handleSubmit function but inside the component
+  const timeoutIdRef = useRef(null);
+
+  useEffect(() => {
+    // Cleanup function now uses timeoutIdRef
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []); // The dependency array remains empty
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -21,19 +39,38 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+
     try {
       const response = await auth.login(credentials);
-      const data = await response.json();
+      // Assuming response.ok is your success condition:
       if (response.ok) {
-        auth.setUser(data.user);
-        navigate('/');
+        console.log('Login successful, setting timeout');
+        setLoading(false);
+        setLoginSuccess(true);
+        
+        timeoutIdRef.current = setTimeout(() => {
+          console.log('Timeout completed, navigating');
+          navigate('/loggedInHomePage');
+        }, 2000); // Adjust the time as needed
       } else {
-        throw new Error(data.message || 'Login failed');
+        setLoading(false);
+        throw new Error('Login failed');
       }
     } catch (error) {
+      setLoading(false);
       setError(error.message);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutIdRef.current) {
+        console.log('Component unmounting, clearing timeout');
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, []);
 
   // Function to handle the redirection after Azure AD B2C sign-in process
   const handleRedirect = async () => {
@@ -92,87 +129,97 @@ const LoginPage = () => {
 
   return (
     <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          bgcolor: 'background.paper',
-          boxShadow: 1,
-          borderRadius: 1,
-          p: 3,
-          mt: 8,
-          mb: 4,
-        }}
-      >
-      <Typography 
-        component="h1" 
-        variant="h5" 
-        sx={{ color: 'text.primary' }}
-      >
-          Sign in
-      </Typography>
-        {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>} {/* Error message displayed here */}
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            value={credentials.username}
-            onChange={handleChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 2, mb: 2, backgroundColor: '#2F2F2F' }}
-            onClick={handleMicrosoftSignIn}
-            >
-            Sign in with Microsoft
-            </Button>
-          
-            <Typography component="p" variant="body2" sx={{ color: 'text.primary', mt: 1, display: 'block', textAlign: 'center' }}>
-            {"Don't have an account? "}
-            <Link href="/register" variant="body2" sx={{ textDecoration: 'none', color: 'blue !important' }}>
-              Sign Up
-            </Link>
-          </Typography>  
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 3,
+            mt: 8,
+            mb: 4,
+          }}
+        >
+ {loginSuccess ? (
+          <Box sx={{ textAlign: 'center', color: green[500] }}>
+            <CheckCircleIcon sx={{ fontSize: 60 }} />
+            <Typography variant="h5">
+              Signed In
+            </Typography>
+          </Box>
+        ) : loading ? (
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+            <CircularProgress />
+            <Typography variant="h6" sx={{ mt: 2 }}>
+              Signing In...
+            </Typography>
+          </Box>
+          ) : (
+            <React.Fragment>
+              {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                  value={credentials.username}
+                  onChange={handleChange}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 2, mb: 2, backgroundColor: '#2F2F2F' }}
+                  onClick={handleMicrosoftSignIn}
+                >
+                  Sign in with Microsoft
+                </Button>
+                <Typography component="p" variant="body2" sx={{ color: 'text.primary', mt: 1, display: 'block', textAlign: 'center' }}>
+                  {"Don't have an account? "}
+                  <Link href="/register" variant="body2" sx={{ textDecoration: 'none', color: 'blue !important' }}>
+                    Sign Up
+                  </Link>
+                </Typography>
+              </Box>
+            </React.Fragment>
+          )}
         </Box>
-      </Box>
-    </Container>
+      </Container>
     </motion.div>
   );
-};
+}
 
 export default LoginPage;
 
