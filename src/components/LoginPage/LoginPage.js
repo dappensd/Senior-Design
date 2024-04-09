@@ -51,7 +51,7 @@ const LoginPage = () => {
         
         timeoutIdRef.current = setTimeout(() => {
           console.log('Timeout completed, navigating');
-          navigate('/loggedInHomePage');
+          navigate('/');
         }, 2000); // Adjust the time as needed
       } else {
         setLoading(false);
