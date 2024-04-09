@@ -11,9 +11,9 @@ const DeviceRow = ({ device, onEdit, onViewDetails, onDelete }) => {
       <td>{device.status}</td>
       <td>{device.connectionState}</td>
       <td>
-        <button className={styles.viewButton} onClick={() => onViewDetails(device)}>View</button>
-        <button className={styles.editButton} onClick={() => onEdit(device)}>Edit</button>
-        <button className={styles.deleteButton} onClick={() => onDelete(device.id, device.partitionKey)}>Delete</button>
+        <button className={`${styles.button} ${styles.viewButton}`} onClick={() => onViewDetails(device)}>View</button>
+        <button className={`${styles.button} ${styles.editButton}`} onClick={() => onEdit(device)}>Edit</button>
+        <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => onDelete(device.id, device.partitionKey)}>Delete</button>
       </td>
     </tr>
   );
