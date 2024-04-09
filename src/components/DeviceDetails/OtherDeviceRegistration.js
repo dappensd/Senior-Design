@@ -76,12 +76,12 @@ const OtherDeviceRegistration = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Device ID:
-          <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
+          <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} maxLength={20} required />
         </label>
 
         <label>
           Serial Number: 
-          <input type="text" name="serialNumber" value={device.deviceSpecificData.serialNumber} onChange={handleChange} disabled={loading} />
+          <input type="text" name="serialNumber" value={device.deviceSpecificData.serialNumber} onChange={handleChange} disabled={loading} maxLength={20} />
          </label>
         <button type="submit" disabled={loading}>Register Device</button>
       </form>

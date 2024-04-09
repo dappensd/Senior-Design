@@ -96,11 +96,11 @@ const LIFXDeviceRegistration = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Device ID:
-          <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
+          <input type="text" name="deviceId"  value={device.deviceId} onChange={handleChange} disabled={loading} maxLength={20} />
         </label>
         <label htmlFor="lifxToken">
           Authentication Token:
-            <input type="text" id="lifxToken" name="authCode" value={device.authCode} onChange={handleChange} disabled={loading} />
+            <input type="text" id="lifxToken" name="authCode" value={device.authCode} onChange={handleChange} disabled={loading} maxLength={20} />
         </label>
         <div>
           Device Type: 

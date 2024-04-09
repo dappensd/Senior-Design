@@ -4,8 +4,6 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 
-
-
 // Routers
 const deviceRoutes = require('./routes/devices');
 const userRoutes = require('./userauthentication/users');

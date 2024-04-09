@@ -104,6 +104,7 @@ const RegistrationPage = () => {
             autoComplete="email"
             value={credentials.email}
             onChange={handleChange}
+            inputProps={{ maxLength: 20 }}
           />
           <TextField
             margin="normal"

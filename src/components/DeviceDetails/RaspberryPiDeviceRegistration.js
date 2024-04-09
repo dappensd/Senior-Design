@@ -83,11 +83,11 @@ const RaspberryPiDeviceRegistration = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Device ID:
-            <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} />
+            <input type="text" name="deviceId" value={device.deviceId} onChange={handleChange} disabled={loading} maxLength={20} />
           </label>
           <label>
             RaspberryPi Device Model:
-            <input type="text" name="raspberryPiModel" value={device.deviceSpecificData.raspberryPiModel} onChange={handleChange} disabled={loading} />
+            <input type="text" name="raspberryPiModel" value={device.deviceSpecificData.raspberryPiModel} onChange={handleChange} disabled={loading} maxLength={20} />
           </label>
           <button type="submit" disabled={loading}>Register Device</button>
         </form>
