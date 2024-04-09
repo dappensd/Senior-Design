@@ -2,17 +2,10 @@ import React, { useState } from 'react';
 import { Button, TextField, Box, Typography, Container, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
-import CircularProgress from '@mui/material/CircularProgress';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { green } from '@mui/material/colors';
 
 
 const RegistrationPage = () => {
   const [credentials, setCredentials] = useState({ username: '', email: '', password: '' });
-
-  const [loading, setLoading] = useState(false); // State to control the loading animation
-  const [actionType, setActionType] = useState(''); // State to determine what action is taking place
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,8 +19,6 @@ const RegistrationPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Trigger loading state
-    setActionType('registering'); // Set action type to registering
     
     try {
       
@@ -56,27 +47,22 @@ const RegistrationPage = () => {
   
       const data = await response.json();
       console.log('User registered:', data);
-      
-      setLoading(false);
-      setRegistrationSuccess(true);
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000);
+
+      navigate('/');
   
+     
     } catch (error) {
       console.error('Registration failed:', error);
       // Handle registration errors, e.g., display error message to the user
-    } finally {
-      setLoading(false); // Stop loading state after operation is completed or failed
     }
   };
   
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
     >
     <Container component="main" maxWidth="xs">
       <Box
@@ -160,7 +146,9 @@ const RegistrationPage = () => {
     </Container>
     </motion.div>
   );
-};  
+};
 
 export default RegistrationPage;
+
+
 

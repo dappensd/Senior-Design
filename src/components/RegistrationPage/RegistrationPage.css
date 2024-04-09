@@ -61,16 +61,5 @@
     color: #61dafb; 
 }
 
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .loading-text {
-    margin-top: 16px;
-    font-weight: bold;
-  }
-  
+
 
