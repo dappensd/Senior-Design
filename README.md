@@ -46,9 +46,9 @@ This project is a comprehensive IoT device management platform that allows users
 
 ### Raspberry Pi Integration
 - **Setup Script**: Downloads and runs locally on the Raspberry Pi to configure it for the project.
-    - To see the script: [click here:](public/downloads/setupStayAware.sh)
+    - To see the script: [click here](public/downloads/setupStayAware.sh)
 - **Vulnerability Scanner**: A script to scan the Raspberry Pi for vulnerabilities.
-    - To see the script: [click here:](public/downloads/iotDeviceManager.js)
+    - To see the script: [click here](public/downloads/iotDeviceManager.js)
 
 ### Additional Features
 - **Responsive Design**: The frontend is designed to be user-friendly and responsive.
